@@ -71,7 +71,7 @@
         </div>
         <div class="navbar-links d-flex justify-content-center">
             <!-- Navigazione senza bottoni, centrata -->
-            <a href="#" class="nav-link">Home</a>
+            <a href="index.html" class="nav-link">Home</a>
             <a href="itinerari.html" class="nav-link">Itinerari</a>
             <a href="guide.html" class="nav-link">Guide</a>
             <a href="#chi-siamo" class="nav-link">Chi Siamo</a>
@@ -84,34 +84,36 @@
 
 <!-- Sezione principale con select delle regioni e bottone cerca -->
 <section class="container content d-flex justify-content-center align-items-center">
-    <div class="search-section p-3 d-flex">
-        <!-- Select delle regioni -->
-        <select action="itinerari.html" class="form-select me-3" aria-label="Seleziona Regione" method="post" name="regione">
-            <option selected disabled>Seleziona una regione...</option>
-            <option value="tutteregioni">Tutte le regioni</option>
-            <option value="abruzzo">Abruzzo</option>
-            <option value="basilicata">Basilicata</option>
-            <option value="calabria">Calabria</option>
-            <option value="campania">Campania</option>
-            <option value="emilia-romagna">Emilia-Romagna</option>
-            <option value="friuli-venezia-giulia">Friuli Venezia Giulia</option>
-            <option value="lazio">Lazio</option>
-            <option value="liguria">Liguria</option>
-            <option value="lombardia">Lombardia</option>
-            <option value="marche">Marche</option>
-            <option value="molise">Molise</option>
-            <option value="piemonte">Piemonte</option>
-            <option value="puglia">Puglia</option>
-            <option value="sardegna">Sardegna</option>
-            <option value="sicilia">Sicilia</option>
-            <option value="toscana">Toscana</option>
-            <option value="trentino-alto-adige">Trentino-Alto Adige</option>
-            <option value="umbria">Umbria</option>
-            <option value="valle-d-aosta">Valle d'Aosta</option>
-            <option value="veneto">Veneto</option>
-        </select>
-        <!-- Bottone Cerca -->
-        <button class="btn btn-primary">Cerca</button>
+    <div class="search-section p-3">
+        <form action="itinerari.html" method="post" class="d-flex align-items-center">
+            <!-- Select delle regioni -->
+            <select class="form-select me-3" aria-label="Seleziona Regione" name="regione">
+                <option selected disabled>Seleziona una regione...</option>
+                <option value="tutteregioni">Tutte le regioni</option>
+                <option value="abruzzo">Abruzzo</option>
+                <option value="basilicata">Basilicata</option>
+                <option value="calabria">Calabria</option>
+                <option value="campania">Campania</option>
+                <option value="emilia-romagna">Emilia-Romagna</option>
+                <option value="friuli-venezia-giulia">Friuli Venezia Giulia</option>
+                <option value="lazio">Lazio</option>
+                <option value="liguria">Liguria</option>
+                <option value="lombardia">Lombardia</option>
+                <option value="marche">Marche</option>
+                <option value="molise">Molise</option>
+                <option value="piemonte">Piemonte</option>
+                <option value="puglia">Puglia</option>
+                <option value="sardegna">Sardegna</option>
+                <option value="sicilia">Sicilia</option>
+                <option value="toscana">Toscana</option>
+                <option value="trentino-alto-adige">Trentino-Alto Adige</option>
+                <option value="umbria">Umbria</option>
+                <option value="valle-d-aosta">Valle d'Aosta</option>
+                <option value="veneto">Veneto</option>
+            </select>
+            <!-- Bottone Cerca -->
+            <button class="btn btn-primary" type="submit">Cerca</button>
+        </form>
     </div>
 </section>
 
@@ -130,10 +132,12 @@
         <!-- Card 1 -->
         <div class="col-md-4">
             <div class="card">
-                <img src="https://via.placeholder.com/400x200/87CEEB/FFFFFF?text=Percorso+1" class="card-img-top" alt="Percorso 1">
+                <img src="https://via.placeholder.com/400x200/87CEEB/FFFFFF?text=Percorso+1" class="card-img-top"
+                     alt="Percorso 1">
                 <div class="card-body">
                     <h5 class="card-title">Itenerario 1</h5>
-                    <p class="card-text">Descrizione breve del Percorso 1. Scopri i paesaggi mozzafiato e i sentieri avventurosi.</p>
+                    <p class="card-text">Descrizione breve del Percorso 1. Scopri i paesaggi mozzafiato e i sentieri
+                        avventurosi.</p>
                     <a href="#" class="btn btn-primary">Scopri di più</a>
                 </div>
             </div>
@@ -141,10 +145,12 @@
         <!-- Card 2 -->
         <div class="col-md-4">
             <div class="card">
-                <img src="https://via.placeholder.com/400x200/4682B4/FFFFFF?text=Percorso+2" class="card-img-top" alt="Percorso 2">
+                <img src="https://via.placeholder.com/400x200/4682B4/FFFFFF?text=Percorso+2" class="card-img-top"
+                     alt="Percorso 2">
                 <div class="card-body">
                     <h5 class="card-title">Itenerario 2</h5>
-                    <p class="card-text">Descrizione breve del Percorso 2. Immergiti nella natura e rilassati lungo questo sentiero.</p>
+                    <p class="card-text">Descrizione breve del Percorso 2. Immergiti nella natura e rilassati lungo
+                        questo sentiero.</p>
                     <a href="#" class="btn btn-primary">Scopri di più</a>
                 </div>
             </div>
@@ -152,7 +158,8 @@
         <!-- Card 3 -->
         <div class="col-md-4">
             <div class="card">
-                <img src="https://via.placeholder.com/400x200/5F9EA0/FFFFFF?text=Percorso+3" class="card-img-top" alt="Percorso 3">
+                <img src="https://via.placeholder.com/400x200/5F9EA0/FFFFFF?text=Percorso+3" class="card-img-top"
+                     alt="Percorso 3">
                 <div class="card-body">
                     <h5 class="card-title">Itenerario 3</h5>
                     <p class="card-text">Avventura e divertimento in un'escursione indimenticabile.</p>
