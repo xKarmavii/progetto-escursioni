@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettagli Itinerario</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .star-rating {
+            color: gold;
+        }
+        .map-container {
+            height: 300px;
+            width: 100%;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            margin: 5px;
+        }
+        .navbar-custom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-links {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        .navbar-links a {
+            margin: 0 20px;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .area-riservata {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<header class="container-fluid py-3 border-bottom">
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="logo-container">
+            <div class="logo d-flex justify-content-center align-items-center">
+                LOGO
+            </div>
+        </div>
+        <div class="navbar-links d-flex justify-content-center">
+            <!-- Navigazione senza bottoni, centrata -->
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="itinerari.html" class="nav-link">Itinerari</a>
+            <a href="guide.html" class="nav-link">Guide</a>
+            <a href="index.html#chi-siamo" class="nav-link">Chi Siamo</a>
+        </div>
+        <div class="area-riservata">
+            <a href="#" class="btn btn-outline-secondary">Area Riservata</a>
+        </div>
+    </div>
+</header>
+
+
+<!-- Corpo -->
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Titolo dell'Itinerario</h1>
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Dettagli</h5>
+                    <p><strong>Difficoltà: </strong>
+                        <span class="star-rating">
+                            ★★★★★ <!-- Aggiungi qui la logica per la valutazione -->
+                        </span>
+                    </p>
+                    <p><strong>Lunghezza del percorso: </strong>10 km</p>
+                    <p><strong>Inizio itinerario: </strong>Luogo di Partenza</p>
+                    <p><strong>Fine itinerario: </strong>Luogo di Arrivo</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="map-container">
+                <!-- Includi qui la tua mappa di Google Maps -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d...YOUR_MAP_EMBED_CODE" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+    <p class="text-center mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias animi assumenda at consequatur cumque dolore incidunt itaque iusto magnam obcaecati porro reiciendis rem repudiandae, similique sint sit sunt temporibus!</p>
+    <div class="image-container mt-4">
+        <h5>Galleria Immagini</h5>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="path/to/image1.jpg" alt="Immagine 1">
+            </div>
+            <div class="col-md-4">
+                <img src="path/to/image2.jpg" alt="Immagine 2">
+            </div>
+            <div class="col-md-4">
+                <img src="path/to/image3.jpg" alt="Immagine 3">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <button class="btn btn-primary">Prenota Itinerario</button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Colonna contatti -->
+            <div class="col-md-6">
+                <h5>Contatti</h5>
+                <ul class="list-unstyled">
+                    <li>Email: info@example.com</li>
+                    <li>Telefono: +39 123 456 789</li>
+                    <li>Indirizzo: Via Roma 123, 00100 Roma, Italia</li>
+                </ul>
+            </div>
+            <!-- Colonna social -->
+            <div class="col-md-6 text-md-end">
+                <h5>Seguici sui Social</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet">
+</body>
+</html>

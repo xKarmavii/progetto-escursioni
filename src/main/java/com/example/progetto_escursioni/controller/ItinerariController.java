@@ -31,13 +31,13 @@ public class ItinerariController {
             Model model,
             @RequestParam("regione") String regione
     ){
-        if(regione.equals("tutte")){
+        if(regione.equals("tutteregioni")){
             itinerariVisualizzati = itinerarioService.elencoItinerari();
         } else {
             itinerariVisualizzati = itinerarioService.elencoItinerariRegione(regione);
         }
         model.addAttribute("itinerariVisualizzati", itinerariVisualizzati);
-        return "redirect:/itinerari";
+        return "itinerari";
     }
 
 }

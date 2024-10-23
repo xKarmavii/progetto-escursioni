@@ -14,6 +14,9 @@ public class Itinerario {
     private String nome;
 
     @Column
+    private String immagine;
+
+    @Column
     private String regione;
 
     @Column
@@ -41,6 +44,7 @@ public class Itinerario {
     @Column
     private double prezzo;
 
+
     public int getId() {
         return id;
     }
@@ -55,6 +59,14 @@ public class Itinerario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getImmagine() {
+        return immagine;
+    }
+
+    public void setImmagine(String immagine) {
+        this.immagine = immagine;
     }
 
     public String getRegione() {

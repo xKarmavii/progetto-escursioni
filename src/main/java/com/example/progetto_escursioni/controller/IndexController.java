@@ -22,9 +22,9 @@ public class IndexController {
             Model model
     ){
         // creo lista di itinerari per il carosello a fine pagina
-        List<Itinerario> caroselloItinerari = itinerarioService.elencaTreItinerari();
+//        List<Itinerario> caroselloItinerari = itinerarioService.elencaTreItinerari();
         // registro in model per thymeleaf
-        model.addAttribute("caroselloItinerari", caroselloItinerari);
+//        model.addAttribute("caroselloItinerari", caroselloItinerari);
 
         // return pagina
         return "index";
