@@ -32,4 +32,5 @@ public class ItinerarioServiceImpl implements ItinerarioService {
     public List<Itinerario> elencoItinerariRegione(String regione) {
         return itinerarioDao.findByRegione(regione);
     }
+
 }

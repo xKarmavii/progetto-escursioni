@@ -130,39 +130,14 @@
 <section class="container py-5">
     <div class="row">
         <!-- Card 1 -->
-        <div class="col-md-4">
+        <div class="col-md-4" th:each="itinerario : ${caroselloItinerari}">
             <div class="card">
-                <img src="https://via.placeholder.com/400x200/87CEEB/FFFFFF?text=Percorso+1" class="card-img-top"
-                     alt="Percorso 1">
+                <img th:src="@{${itinerario.immagine == null ? 'markerImage.png' : itinerario.immagine}}" class="card-img-top"
+                     alt="Immagine itinerario">
                 <div class="card-body">
-                    <h5 class="card-title">Itenerario 1</h5>
-                    <p class="card-text">Descrizione breve del Percorso 1. Scopri i paesaggi mozzafiato e i sentieri
+                    <h5 class="card-title" th:text="${itinerario.nome}">Itinerario 1</h5>
+                    <p class="card-text" th:text="${itinerario.descrizione}">Descrizione breve del Percorso 1. Scopri i paesaggi mozzafiato e i sentieri
                         avventurosi.</p>
-                    <a href="#" class="btn btn-primary">Scopri di più</a>
-                </div>
-            </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/400x200/4682B4/FFFFFF?text=Percorso+2" class="card-img-top"
-                     alt="Percorso 2">
-                <div class="card-body">
-                    <h5 class="card-title">Itenerario 2</h5>
-                    <p class="card-text">Descrizione breve del Percorso 2. Immergiti nella natura e rilassati lungo
-                        questo sentiero.</p>
-                    <a href="#" class="btn btn-primary">Scopri di più</a>
-                </div>
-            </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/400x200/5F9EA0/FFFFFF?text=Percorso+3" class="card-img-top"
-                     alt="Percorso 3">
-                <div class="card-body">
-                    <h5 class="card-title">Itenerario 3</h5>
-                    <p class="card-text">Avventura e divertimento in un'escursione indimenticabile.</p>
                     <a href="#" class="btn btn-primary">Scopri di più</a>
                 </div>
             </div>

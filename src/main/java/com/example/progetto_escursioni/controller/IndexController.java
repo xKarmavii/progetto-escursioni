@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -22,9 +23,10 @@ public class IndexController {
             Model model
     ){
         // creo lista di itinerari per il carosello a fine pagina
-//        List<Itinerario> caroselloItinerari = itinerarioService.elencaTreItinerari();
+        List<Itinerario> caroselloItinerari = itinerarioService.elencoItinerari();
+        Collections.shuffle(caroselloItinerari);
         // registro in model per thymeleaf
-//        model.addAttribute("caroselloItinerari", caroselloItinerari);
+        model.addAttribute("caroselloItinerari", caroselloItinerari.subList(0,3));
 
         // return pagina
         return "index";
