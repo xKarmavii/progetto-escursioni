@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,7 +85,7 @@
 <section class="container content d-flex justify-content-center align-items-center">
     <div class="search-section p-3 d-flex">
         <!-- Select delle regioni -->
-        <select class="form-select me-3" aria-label="Seleziona Regione">
+        <select action="itinerari.html" class="form-select me-3" aria-label="Seleziona Regione" method="post" name="regione">
             <option selected disabled>Seleziona una regione...</option>
             <option value="tutteregioni">Tutte le regioni</option>
             <option value="abruzzo">Abruzzo</option>

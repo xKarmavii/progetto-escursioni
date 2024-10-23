@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,7 +76,7 @@
                 <form>
                     <div class="mb-3">
                         <label for="filtro1" class="form-label">Regione</label>
-                        <select class="form-select" id="filtro1">
+                        <select class="form-select" id="filtro1" method="post" name="regione">
                             <option value="tutteregioni">Tutte le regioni</option>
                             <option value="spazio" disabled>------------------------------</option>
                             <option value="abruzzo">Abruzzo</option>

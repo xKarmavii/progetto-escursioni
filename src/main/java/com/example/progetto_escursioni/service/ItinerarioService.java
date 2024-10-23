@@ -8,4 +8,5 @@ public interface ItinerarioService {
 
     List<Itinerario> elencoItinerari();
     Itinerario dettaglioItinerario(int idItinerario);
+    List<Itinerario> elencoItinerariRegione(String regione);
 }

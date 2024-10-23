@@ -27,4 +27,9 @@ public class ItinerarioServiceImpl implements ItinerarioService {
         }
         return null;
     }
+
+    @Override
+    public List<Itinerario> elencoItinerariRegione(String regione) {
+        return itinerarioDao.findByRegione(regione);
+    }
 }
