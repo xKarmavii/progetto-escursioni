@@ -2,6 +2,9 @@ package com.example.progetto_escursioni.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "itinerari")
 public class Itinerario {
@@ -40,6 +43,15 @@ public class Itinerario {
     @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_guida", referencedColumnName = "id")
     private Guida guida;
+
+    @OneToMany
+            (
+                    mappedBy = "itinerario",
+                    cascade = CascadeType.REMOVE,
+                    fetch = FetchType.EAGER,
+                    orphanRemoval = true
+            )
+    private List<Foto> fotoItinerario = new ArrayList<>();
 
     @Column
     private double prezzo;
@@ -131,6 +143,14 @@ public class Itinerario {
 
     public void setGuida(Guida guida) {
         this.guida = guida;
+    }
+
+    public List<Foto> getFotoItinerario() {
+        return fotoItinerario;
+    }
+
+    public void setFotoItinerario(List<Foto> fotoItinerario) {
+        this.fotoItinerario = fotoItinerario;
     }
 
     public double getPrezzo() {

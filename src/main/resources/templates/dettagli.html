@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,45 +83,38 @@
 
 <!-- Corpo -->
 <div class="container mt-5">
-    <h1 class="text-center mb-5">Titolo dell'Itinerario</h1>
-
+    <h1 class="text-center mb-5" th:text="${itinerario.nome}">Titolo dell'Itinerario</h1>
 
     <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h5>Dettagli</h5>
-                    <p><strong>Difficoltà: </strong>
+                    <p><strong>Difficoltà: <span th:text="${itinerario.difficolta}"></span></strong>
                         <span class="star-rating">
                             ★★★★★ <!-- Aggiungi qui la logica per la valutazione -->
                         </span>
                     </p>
-                    <p><strong>Lunghezza del percorso: </strong>10 km</p>
-                    <p><strong>Inizio itinerario: </strong>Luogo di Partenza</p>
-                    <p><strong>Fine itinerario: </strong>Luogo di Arrivo</p>
-                    <p><strong>Prezzo: </strong></p>
+                    <p><strong>Lunghezza del percorso: <span th:text="${itinerario.distanza}"></span></strong>10 km</p>
+                    <p><strong>Dislivello: </strong><span th:text="${itinerario.dislivello}"></span></p>
+                    <p><strong>Durata media: </strong><span th:text="${itinerario.durataMedia}"></span></p>
+                    <p><strong>Prezzo: </strong><span th:text="${itinerario.prezzo}"></span></p>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="map-container">
                 <!-- Includi qui la tua mappa di Google Maps -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25327.500275615694!2d14.036249094718311!3d37.48580041553363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1310c26934821c29%3A0xa9a3421c917c8c08!2sLidl!5e0!3m2!1sen!2sit!4v1729693538058!5m2!1sen!2sit" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe th:src="${itinerario.mappa}" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </div>
-    <p class="text-center mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias animi assumenda at consequatur cumque dolore incidunt itaque iusto magnam obcaecati porro reiciendis rem repudiandae, similique sint sit sunt temporibus!</p>
+    <p class="text-center mt-4" th:text="${itinerario.descrizione}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias animi assumenda at consequatur cumque dolore incidunt itaque iusto magnam obcaecati porro reiciendis rem repudiandae, similique sint sit sunt temporibus!</p>
     <div class="image-container mt-4">
         <h5>Galleria Immagini</h5>
         <div class="row">
-            <div class="col-md-4">
-                <img src="path/to/image1.jpg" alt="Immagine 1">
-            </div>
-            <div class="col-md-4">
-                <img src="path/to/image2.jpg" alt="Immagine 2">
-            </div>
-            <div class="col-md-4">
-                <img src="path/to/image3.jpg" alt="Immagine 3">
+            <div class="col-md-4" th:each="foto : fotoItinerario">
+                <img src="@{${foto == null ? 'markerImage.png' : foto}}" alt="Foto itinerario">
             </div>
         </div>
     </div>
