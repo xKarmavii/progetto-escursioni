@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,10 +68,10 @@
       </div>
     </div>
     <div class="navbar-links d-flex justify-content-center">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="itinerari.html" class="nav-link">Itinerari</a>
-      <a href="guide.html" class="nav-link">Guide</a>
-      <a href="index.html#chi-siamo" class="nav-link">Chi Siamo</a>
+      <a th:href="@{/}" class="nav-link">Home</a>
+      <a th:href="@{/itinerari}" class="nav-link">Itinerari</a>
+      <a th:href="@{/guide}" class="nav-link">Guide</a>
+      <a th:href="@{/#chi-siamo}" class="nav-link">Chi Siamo</a>
     </div>
     <div class="area-riservata">
       <a href="#" class="btn btn-outline-secondary">Area Riservata</a>
@@ -83,12 +83,12 @@
 <section class="container py-5">
   <div class="row mb-4">
     <!-- Card 1 -->
-    <div class="col-md-6">
+    <div class="col-md-6" th:each="guida : ${listaGuide}">
       <div class="card card-content">
-        <img src="https://via.placeholder.com/200x200/87CEEB/FFFFFF?text=Guida+1" class="card-img-left" alt="Guida 1">
+        <img th:src="@{${guida.foto == null ? 'markerImage.png' : guida.foto}}" class="card-img-left" alt="Guida 1">
         <div class="card-body">
-          <h5 class="card-title">Guida 1</h5>
-          <p class="card-text">Descrizione card guida.</p>
+          <h5 class="card-title" th:text="${guida.nome + ' ' + guida.cognome}">Guida 1</h5>
+          <p class="card-text" th:text="${guida.descrizione}">Descrizione card guida.</p>
         </div>
       </div>
     </div>
