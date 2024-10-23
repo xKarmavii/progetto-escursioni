@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerari</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .star {
+            color: gold; /* Colore delle stelle */
+        }
+        .navbar-custom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-links {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        .navbar-links a {
+            margin: 0 20px;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .area-riservata {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="container-fluid py-3 border-bottom">
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="logo-container">
+            <div class="logo d-flex justify-content-center align-items-center">
+                LOGO
+            </div>
+        </div>
+        <div class="navbar-links d-flex justify-content-center">
+            <!-- Navigazione senza bottoni, centrata -->
+            <a href="#" class="nav-link">Itinerari</a>
+            <a href="#" class="nav-link">Guide</a>
+            <a href="#chi-siamo" class="nav-link">Chi Siamo</a>
+        </div>
+        <div class="area-riservata">
+            <a href="#" class="btn btn-outline-secondary">Area Riservata</a>
+        </div>
+    </div>
+</header>
+
+<!-- Corpo della pagina con margine sopra -->
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Div laterale a sinistra -->
+        <div class="col-md-3">
+            <div class="border ms-3 p-3">
+                <h4>Applica i filtri per ricerca</h4>
+                <form>
+                    <div class="mb-3">
+                        <label for="filtro1" class="form-label">Regione</label>
+                        <select class="form-select" id="filtro1">
+                            <option value="tutteregioni">Tutte le regioni</option>
+                            <option value="spazio" disabled>------------------------------</option>
+                            <option value="abruzzo">Abruzzo</option>
+                            <option value="basilicata">Basilicata</option>
+                            <option value="calabria">Calabria</option>
+                            <option value="campania">Campania</option>
+                            <option value="emilia-romagna">Emilia-Romagna</option>
+                            <option value="friuli-venezia-giulia">Friuli Venezia Giulia</option>
+                            <option value="lazio">Lazio</option>
+                            <option value="liguria">Liguria</option>
+                            <option value="lombardia">Lombardia</option>
+                            <option value="marche">Marche</option>
+                            <option value="molise">Molise</option>
+                            <option value="piemonte">Piemonte</option>
+                            <option value="puglia">Puglia</option>
+                            <option value="sardegna">Sardegna</option>
+                            <option value="sicilia">Sicilia</option>
+                            <option value="toscana">Toscana</option>
+                            <option value="trentino-alto-adige">Trentino-Alto Adige</option>
+                            <option value="umbria">Umbria</option>
+                            <option value="valle-d-aosta">Valle d'Aosta</option>
+                            <option value="veneto">Veneto</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Applica Filtri</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contenuto principale -->
+        <div class="col-md-9">
+            <div class="border p-3">
+                <h4 style="text-align: center">Tutti gli itinerari</h4>
+
+                <!-- Card 1 con margine inferiore -->
+                <div class="card mb-4">
+                    <div class="row g-0">
+                        <!-- Parte sinistra con foto -->
+                        <div class="col-md-6">
+                            <img src="https://via.placeholder.com/300" class="img-fluid rounded-start" alt="Foto">
+                        </div>
+                        <!-- Parte destra con descrizione -->
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Titolo della Card</h5>
+                                <p class="card-text">Questa è una descrizione dell'elemento, dove puoi aggiungere dettagli interessanti. La descrizione può contenere informazioni sull'elemento, servizi o qualsiasi altro contenuto rilevante.</p>
+                                <p class="card-text"><small class="text-muted">Ultimo aggiornamento 3 minuti fa</small></p>
+                                <div class="d-flex align-items-center">
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="ml-2">Difficoltà: 5/5</span>
+                                </div>
+                                <!-- Pulsante per dettagli -->
+                                <a href="#" class="btn btn-primary mt-4">Scopri di più</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Colonna contatti -->
+            <div class="col-md-6">
+                <h5>Contatti</h5>
+                <ul class="list-unstyled">
+                    <li>Email: info@example.com</li>
+                    <li>Telefono: +39 123 456 789</li>
+                    <li>Indirizzo: Via Roma 123, 00100 Roma, Italia</li>
+                </ul>
+            </div>
+            <!-- Colonna social -->
+            <div class="col-md-6 text-md-end">
+                <h5>Seguici sui Social</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet">
+</body>
+</html>
