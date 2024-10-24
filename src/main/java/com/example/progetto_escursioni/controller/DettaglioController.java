@@ -27,7 +27,7 @@ public class DettaglioController {
 //        Itinerario itinerario = itinerarioService.dettaglioItinerario(idItinerario);
 //        List<Foto> fotoItinerario = itinerario.getFotoItinerario();
 //        model.addAttribute("fotoItinerario", fotoItinerario);
-//        return "dettagli";
+        return "dettagli";
 
 // DA AGGIUSTARE
     }
