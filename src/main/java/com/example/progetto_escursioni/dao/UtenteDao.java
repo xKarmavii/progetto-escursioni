@@ -6,4 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface UtenteDao extends CrudRepository<Utente, Integer> {
 
     Utente findByUsernameAndPassword(String username, String password);
+    Utente findByUsernameOrEmail(String username, String email);
+
 }

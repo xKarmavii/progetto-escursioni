@@ -42,8 +42,14 @@ public class LoginRegistrazioneController {
     public String registrazioneManager(Model model,
                                        @ModelAttribute("utente") Utente utente) {
 
-        utenteService.salvaUtente(utente);
-        model.addAttribute("messaggio", "Registrazione effettuata");
+        if (utenteService.controlloUsernameEmail(utente.getUsername(), utente.getEmail())) {
+            utenteService.salvaUtente(utente);
+            model.addAttribute("messaggio", "Registrazione effettuata");
+        }
+        else {
+            model.addAttribute("messaggio", "Nome utente o email già in uso");
+        }
+
         return "login-registrazione";
     }
 }

@@ -8,4 +8,5 @@ public interface UtenteService {
     void salvaUtente(Utente utente);
     Utente dettaglioUtente(int idUtente);
     boolean loginUtente(HttpSession session, String username, String password);
+    boolean controlloUsernameEmail(String username, String email);
 }

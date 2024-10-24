@@ -38,7 +38,7 @@
                 <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Inserisci la password"
                        required>
             </div>
-            <p th:if="${messaggio != null}" th:text="${messaggio}" th:style="${messaggio == 'Credenziali errate' ? 'color:red; font-weight: bold; text-align: center;' : 'color:green; font-weight: bold; text-align: center;'}"></p>
+            <p th:if="${messaggio != null}" th:text="${messaggio}" th:style="${messaggio == 'Registrazione effettuata' ? 'color:green; font-weight: bold; text-align: center;' : 'color:red; font-weight: bold; text-align: center;'}"></p>
             <button type="submit" class="btn btn-primary w-100">Accedi</button>
         </form>
         <p class="text-center mt-3">Non hai un account? <a href="#" onclick="showRegisterForm()">Registrati</a></p>

@@ -39,4 +39,16 @@ public class UtenteServiceImpl implements UtenteService {
 
         return false;
     }
+
+    @Override
+    public boolean controlloUsernameEmail(String username, String email) {
+
+        Utente utente = utenteDao.findByUsernameOrEmail(username, email);
+
+        if (utente != null) {
+            return false;
+        }
+
+        return true;
+    }
 }
