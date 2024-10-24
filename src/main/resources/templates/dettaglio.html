@@ -6,6 +6,9 @@
     <title>Dettagli Itinerario</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+
+
     <style>
         .star-rating {
             color: gold;
@@ -114,10 +117,19 @@
         <h5>Galleria Immagini</h5>
         <div class="row">
             <div class="col-md-4" th:each="foto : ${fotoItinerario}">
-                <img th:src="@{${foto.foto == null ? 'markerImage.png' : foto.foto}}" alt="Foto itinerario">
+                <!-- Controllo per se l'immagine esiste -->
+                <a th:if="${foto.foto != null}" th:href="${foto.foto}" data-fancybox="gallery">
+                    <img th:src="${foto.foto}" alt="Foto itinerario" style="width:100%">
+                </a>
+
+                <!-- Controllo per immagine di default -->
+                <a th:if="${foto.foto == null}" th:href="@{/markerImage.png}" data-fancybox="gallery">
+                    <img th:src="@{/markerImage.png}" alt="Foto itinerario" style="width:100%">
+                </a>
             </div>
         </div>
     </div>
+
 
     <div class="text-center mt-5">
         <button class="btn btn-primary">Prenota Itinerario</button>
@@ -156,5 +168,17 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<!-- CSS di Fancybox -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.30/dist/fancybox.css" />
+
+<!-- JS di jQuery (se non è già incluso) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- JS di Fancybox -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.30/dist/fancybox.umd.js"></script>
+
+
+
 </body>
 </html>
