@@ -61,22 +61,43 @@
 
 <!-- Header -->
 <header class="container-fluid py-3 border-bottom">
-  <div class="d-flex align-items-center justify-content-between">
-    <div class="logo-container">
-      <div class="logo d-flex justify-content-center align-items-center">
-        LOGO
+  <nav class="navbar navbar-expand-sm navbar-light p-0">
+    <div class="container-fluid px-0">
+      <!-- Logo -->
+      <div class="d-flex justify-content-center align-items-center" style="width: 160px; height: 160px;">
+        <img src="/static/logo_piccolo_no_sfondo.png" alt="logo" class="img-fluid" style="max-height: 100%; width: auto;">
+      </div>
+
+      <!-- Hamburger button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+              aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Contenuto navbar collassabile -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto text-center">
+          <li class="nav-item px-2">
+            <a class="nav-link" th:href="@{/}">Home</a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link" th:href="@{/itinerari}">Itinerari</a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link" th:href="@{/guide}">Guide</a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link" th:href="@{/#chi-siamo}">Chi Siamo</a>
+          </li>
+        </ul>
+
+        <!-- Area Riservata -->
+        <div class="text-center text-sm-end mt-3 mt-sm-0">
+          <a th:href="@{/areariservata}" class="btn btn-outline-secondary">Area Riservata</a>
+        </div>
       </div>
     </div>
-    <div class="navbar-links d-flex justify-content-center">
-      <a th:href="@{/}" class="nav-link">Home</a>
-      <a th:href="@{/itinerari}" class="nav-link">Itinerari</a>
-      <a th:href="@{/guide}" class="nav-link">Guide</a>
-      <a th:href="@{/#chi-siamo}" class="nav-link">Chi Siamo</a>
-    </div>
-    <div class="area-riservata">
-      <a th:href="@{/areariservata}" class="btn btn-outline-secondary">Area Riservata</a>
-    </div>
-  </div>
+  </nav>
 </header>
 
 <!-- Card Section -->
