@@ -134,7 +134,7 @@
                                     <span class="ml-2" th:text="'Difficoltà: ' + ${itinerario.difficolta}">Difficoltà: 5/5</span>
                                 </div>
                                 <!-- Pulsante per dettagli -->
-                                <a href="#" class="btn btn-primary mt-4">Scopri di più</a>
+                                <a th:href="@{/dettaglio(id=${itinerario.id})}" class="btn btn-primary mt-4">Scopri di più</a>
                             </div>
                         </div>
                     </div>

@@ -90,15 +90,15 @@
             <div class="card">
                 <div class="card-body">
                     <h5>Dettagli</h5>
-                    <p><strong>Difficoltà: <span th:text="${itinerario.difficolta}"></span></strong>
+                    <p><strong>Difficoltà: </strong><span th:text="${itinerario.difficolta}"></span>
                         <span class="star-rating">
                             ★★★★★ <!-- Aggiungi qui la logica per la valutazione -->
                         </span>
                     </p>
-                    <p><strong>Lunghezza del percorso: <span th:text="${itinerario.distanza}"></span></strong>10 km</p>
-                    <p><strong>Dislivello: </strong><span th:text="${itinerario.dislivello}"></span></p>
-                    <p><strong>Durata media: </strong><span th:text="${itinerario.durataMedia}"></span></p>
-                    <p><strong>Prezzo: </strong><span th:text="${itinerario.prezzo}"></span></p>
+                    <p><strong>Lunghezza del percorso: </strong><span th:text="${itinerario.distanza}"></span> chilometri</p>
+                    <p><strong>Dislivello: </strong><span th:text="${itinerario.dislivello}"></span> metri</p>
+                    <p><strong>Durata media: </strong><span th:text="${itinerario.durataMedia}"></span> ore</p>
+                    <p><strong>Prezzo: </strong><span th:text="${itinerario.prezzo}"></span> euro</p>
                 </div>
             </div>
         </div>
@@ -113,8 +113,8 @@
     <div class="image-container mt-4">
         <h5>Galleria Immagini</h5>
         <div class="row">
-            <div class="col-md-4" th:each="foto : fotoItinerario">
-                <img src="@{${foto == null ? 'markerImage.png' : foto}}" alt="Foto itinerario">
+            <div class="col-md-4" th:each="foto : ${fotoItinerario}">
+                <img th:src="@{${foto.foto == null ? 'markerImage.png' : foto.foto}}" alt="Foto itinerario">
             </div>
         </div>
     </div>

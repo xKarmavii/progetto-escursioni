@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/dettagli")
+@RequestMapping("/dettaglio")
 public class DettaglioController {
 
     @Autowired
@@ -24,10 +24,16 @@ public class DettaglioController {
             Model model,
             @RequestParam("id") int idItinerario
     ){
-//        Itinerario itinerario = itinerarioService.dettaglioItinerario(idItinerario);
-//        List<Foto> fotoItinerario = itinerario.getFotoItinerario();
-//        model.addAttribute("fotoItinerario", fotoItinerario);
-        return "dettagli";
+
+
+        // creo un oggetto itinerario in base all'id fornito e lo registro
+        Itinerario itinerario = itinerarioService.dettaglioItinerario(idItinerario);
+        model.addAttribute("itinerario", itinerario);
+        // recupero la lista delle foto associate all'itinerario e le registro
+        List<Foto> fotoItinerario = itinerario.getFotoItinerario();
+        model.addAttribute("fotoItinerario", fotoItinerario);
+
+        return "dettaglio";
 
 // DA AGGIUSTARE
     }
