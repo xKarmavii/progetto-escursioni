@@ -16,6 +16,12 @@ public class Prenotazione {
     @Column(name = "data_escursione")
     private LocalDate dataEscursione;
 
+    @Column(name = "numero_partecipanti")
+    private int numeroPartecipanti;
+
+    @Column(name = "prezzo_totale")
+    private double prezzoTotale;
+
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_itinerario", referencedColumnName = "id")
     private Itinerario itinerario;
@@ -23,7 +29,6 @@ public class Prenotazione {
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_utente", referencedColumnName = "id")
     private Utente utente;
-
 
     public int getId() {
         return id;
@@ -47,6 +52,22 @@ public class Prenotazione {
 
     public void setDataEscursione(LocalDate dataEscursione) {
         this.dataEscursione = dataEscursione;
+    }
+
+    public int getNumeroPartecipanti() {
+        return numeroPartecipanti;
+    }
+
+    public void setNumeroPartecipanti(int numeroPartecipanti) {
+        this.numeroPartecipanti = numeroPartecipanti;
+    }
+
+    public double getPrezzoTotale() {
+        return prezzoTotale;
+    }
+
+    public void setPrezzoTotale(double prezzoTotale) {
+        this.prezzoTotale = prezzoTotale;
     }
 
     public Itinerario getItinerario() {

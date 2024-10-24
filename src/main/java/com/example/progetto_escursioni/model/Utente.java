@@ -22,8 +22,6 @@ public class Utente {
     private String username;
     @Column
     private String password;
-    @Column
-    private String carta;
 
     public int getId() {
         return id;
@@ -79,13 +77,5 @@ public class Utente {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getCarta() {
-        return carta;
-    }
-
-    public void setCarta(String carta) {
-        this.carta = carta;
     }
 }

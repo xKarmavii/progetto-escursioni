@@ -24,8 +24,6 @@ public class DettaglioController {
             Model model,
             @RequestParam("id") int idItinerario
     ){
-
-
         // creo un oggetto itinerario in base all'id fornito e lo registro
         Itinerario itinerario = itinerarioService.dettaglioItinerario(idItinerario);
         model.addAttribute("itinerario", itinerario);
@@ -34,7 +32,5 @@ public class DettaglioController {
         model.addAttribute("fotoItinerario", fotoItinerario);
 
         return "dettaglio";
-
-// DA AGGIUSTARE
     }
 }
