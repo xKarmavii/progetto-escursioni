@@ -25,3 +25,8 @@ replay_pid*
 .idea
 /target
 src/main/resources/application.properties
+target/classes/templates/areariservata.html
+target/classes/templates/dettaglio.html
+target/classes/templates/guide.html
+target/classes/templates/index.html
+target/classes/templates/itinerari.html
