@@ -38,7 +38,7 @@
                 <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Inserisci la password"
                        required>
             </div>
-            <p th:if="${erroreLogin != null}" th:text="${erroreLogin}" style="color:red; font-weight: bold; text-align: center;"></p>
+            <p th:if="${messaggio != null}" th:text="${messaggio}" th:style="${messaggio == 'Credenziali errate' ? 'color:red; font-weight: bold; text-align: center;' : 'color:green; font-weight: bold; text-align: center;'}"></p>
             <button type="submit" class="btn btn-primary w-100">Accedi</button>
         </form>
         <p class="text-center mt-3">Non hai un account? <a href="#" onclick="showRegisterForm()">Registrati</a></p>
@@ -47,33 +47,33 @@
     <!-- Form di Registrazione -->
     <div class="form-container mx-auto d-none" id="register-form">
         <h2 class="text-center">Registrati</h2>
-        <form method="post" action="/loginregistrazione/registrazione">
+        <form method="post" action="/loginregistrazione/registrazione" th:object="${utente}">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome: </label>
-                <input type="text" class="form-control" id="nome" placeholder="Inserisci Nome" required>
+                <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Inserisci Nome" required>
             </div>
             <div class="mb-3">
                 <label for="cognome" class="form-label">Cognome: </label>
-                <input type="text" class="form-control" id="cognome" placeholder="Inserisci Cognome" required>
+                <input type="text" class="form-control" id="cognome" th:field="*{cognome}" placeholder="Inserisci Cognome" required>
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Nome Utente: </label>
-                <input type="text" class="form-control" id="username" placeholder="Inserisci Nome Utente"
+                <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Inserisci Nome Utente"
                        required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email: </label>
-                <input type="email" class="form-control" id="email" placeholder="Inserisci Email"
+                <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Inserisci Email"
                        required>
             </div>
             <div class="mb-3">
                 <label for="nascita" class="form-label">Data di Nascita: </label>
-                <input type="date" class="form-control" id="nascita" placeholder="Inserisci Email"
+                <input type="date" class="form-control" id="nascita" th:field="*{dataNascita}" placeholder="Inserisci Data di Nascita"
                        required>
             </div>
             <div class="mb-3">
                 <label for="register-password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="register-password" placeholder="Crea una password"
+                <input type="password" class="form-control" id="register-password" th:field="*{password}" placeholder="Crea una password"
                        required>
             </div>
             <button type="submit" class="btn btn-success w-100">Registrati</button>
