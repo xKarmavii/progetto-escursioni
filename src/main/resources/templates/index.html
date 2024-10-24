@@ -114,7 +114,7 @@
                     <p class="card-text" th:text="${itinerario.descrizione}">
                         Descrizione breve del Percorso 1. Scopri i paesaggi mozzafiato e i sentieri avventurosi.
                     </p>
-                    <a href="#" class="btn btn-primary mt-auto">Scopri di più</a>
+                    <a th:href="@{/dettaglio(id=${itinerario.id})}" class="btn btn-primary mt-auto">Scopri di più</a>
                 </div>
             </div>
         </div>

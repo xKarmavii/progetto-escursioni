@@ -30,6 +30,15 @@
           <label for="phone" class="form-label">Numero di Telefono</label>
           <input type="tel" class="form-control" id="phone" placeholder="Inserisci il tuo numero di telefono" required>
         </div>
+        <div class="mb-3">
+          <label for="filtro1" class="form-label">Numero di Partecipanti(Max 4)</label>
+          <select class="form-select" id="filtro1" method="post" name="numeropartecipanti">
+            <option value="uno">1</option>
+            <option value="due">2</option>
+            <option value="tre">3</option>
+            <option value="quattro">4</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -64,8 +73,10 @@
       <div class="card-body">
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between">
-            <span>Totale Itinerario</span>
-            <strong>€50.00</strong>
+            <div class="mb-3">
+              <label for="totale" class="form-label"><strong>Totale:</strong></label>
+              <input type="number" min="0" max="100000" class="form-control text-end" id="totale" required disabled placeholder="€0.00" style="width: 100px; text-align: right;">
+            </div>
           </li>
         </ul>
       </div>
@@ -78,5 +89,54 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Ferma l'invio del modulo
+
+    const cardNumber = document.getElementById('cardNumber').value;
+    const expiryDate = document.getElementById('expiryDate').value;
+    const cvv = document.getElementById('cvv').value;
+
+    // Controllo numero di carta
+    if (!/^\d{16}$/.test(cardNumber.replace(/\s/g, ''))) {
+      alert('Il numero di carta deve avere 16 caratteri numerici.');
+      return;
+    }
+
+    // Controllo data di scadenza
+    const expiryRegex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/; // Regex per MM/YY
+    const match = expiryDate.match(expiryRegex);
+
+    if (!match) {
+      alert('Il formato della data di scadenza deve essere MM/YY.');
+      return;
+    }
+
+    const month = parseInt(match[1], 10);
+    const year = parseInt(match[2], 10) + 2000; // Converti YY a YYYY
+
+    // Data attuale
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth() + 1; // I mesi sono indicizzati da 0
+
+    // Controllo se l'anno è valido
+    if (year < currentYear || (year === currentYear && month < currentMonth)) {
+      alert('La data di scadenza deve essere successiva alla data odierna.');
+      return;
+    }
+
+    // Controllo CVV
+    if (!/^\d{3}$/.test(cvv)) {
+      alert('Il CVV deve avere 3 caratteri numerici.');
+      return;
+    }
+
+    // Se tutti i controlli passano, puoi inviare il modulo
+    alert('Pagamento completato con successo!');
+    this.submit(); // Invio del modulo
+  });
+</script>
 </body>
 </html>

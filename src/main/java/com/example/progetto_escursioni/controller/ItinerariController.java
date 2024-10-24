@@ -22,7 +22,9 @@ public class ItinerariController {
     private ItinerarioService itinerarioService;
 
     @GetMapping
-    public String getPage(){
+    public String getPage(Model model){
+        itinerariVisualizzati = itinerarioService.elencoItinerari();
+        model.addAttribute("itinerariVisualizzati", itinerariVisualizzati);
         return "itinerari";
     }
 
