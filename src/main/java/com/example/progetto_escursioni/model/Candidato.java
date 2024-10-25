@@ -1,6 +1,9 @@
 package com.example.progetto_escursioni.model;
 
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Base64;
 
 @Entity
 @Table(name = "candidati")
@@ -31,8 +34,19 @@ public class Candidato {
         return foto;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setFoto(MultipartFile foto) {
+
+        try {
+            String formato = foto.getContentType();
+
+            String fotoCodificata = "data:" + formato + ";base64," + Base64.getEncoder().encodeToString(foto.getBytes());
+
+            this.foto = fotoCodificata;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public String getDescrizione() {

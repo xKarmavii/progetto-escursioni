@@ -1,5 +1,6 @@
 package com.example.progetto_escursioni.controller;
 
+import com.example.progetto_escursioni.model.Candidato;
 import com.example.progetto_escursioni.model.Utente;
 import com.example.progetto_escursioni.service.CandidatoService;
 import com.example.progetto_escursioni.service.UtenteService;
@@ -22,11 +23,14 @@ public class AreaRiservataController {
 
     @GetMapping
     public String getPage(HttpSession session,
-                          Model model) {
+                          Model model,
+                          @ModelAttribute("utente") Utente utente) {
 
         if (session.getAttribute("utente") != null) {
-            Utente utente = (Utente) session.getAttribute("utente");
+            utente = (Utente) session.getAttribute("utente");
             model.addAttribute("utente", utente);
+            Candidato candidato = new Candidato();
+            model.addAttribute("candidato", candidato);
             return "areariservata";
         }
         else {
@@ -41,14 +45,26 @@ public class AreaRiservataController {
     }
 
     @PostMapping("/candidati")
-    public String candidatiManager(@RequestParam("descrizione") String descrizione,
-                                   @RequestParam("telefono") String telefono,
-                                   @RequestParam("foto") MultipartFile foto,
-                                   HttpSession session) {
-
+    public String candidatiManager(@ModelAttribute("candidato") Candidato candidato,
+                                   HttpSession session,
+                                   Model model) {
         Utente utente = (Utente) session.getAttribute("utente");
-        candidatoService.salvaCandidato(foto, descrizione, telefono, utente);
 
-        return "redirect:/areariservata";
+        if (candidatoService.controlloCandidato(utente.getId())) {
+
+            candidato.setUtente(utente);
+            candidatoService.salvaCandidato(candidato);
+            model.addAttribute("messaggio", "Candidatura inviata con successo!");
+        }
+        else {
+            model.addAttribute("messaggio", "Non puoi inviare un'altra candidatura!");
+        }
+
+
+        candidato = new Candidato();
+        model.addAttribute("candidato", candidato);
+        model.addAttribute("utente", utente);
+
+        return "areariservata";
     }
 }

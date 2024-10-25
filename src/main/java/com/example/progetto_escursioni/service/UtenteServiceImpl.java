@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,9 +44,9 @@ public class UtenteServiceImpl implements UtenteService {
     @Override
     public boolean controlloUsernameEmail(String username, String email) {
 
-        Utente utente = utenteDao.findByUsernameOrEmail(username, email);
+        List<Utente> utenti = utenteDao.findByUsernameOrEmail(username, email);
 
-        if (utente != null) {
+        if (!utenti.isEmpty()) {
             return false;
         }
 

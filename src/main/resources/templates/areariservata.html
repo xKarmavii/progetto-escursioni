@@ -152,7 +152,7 @@
         <p><strong>Username:</strong> <span th:text="${utente.username}"></span></p>
 
         <button class="btn btn-primary" id="toggle-guide-btn">Iscriviti come guida</button>
-
+        <p th:if="${messaggio != null}" th:text="${messaggio}" th:style="${messaggio == 'Candidatura inviata con successo!' ? 'color:green; font-weight: bold; text-align: center;' : 'color:red; font-weight: bold; text-align: center;'}"></p>
         <!-- Pulsante Logout -->
         <a class="Btn" style="position: absolute; top: 20px; right: 20px;" th:href="@{/areariservata/logout}">
             <div class="sign">
@@ -168,20 +168,20 @@
     <div id="guide-section" class="guide-section">
         <h3>Iscrizione al Ruolo di Guida</h3>
         <p>Compila il modulo per iscriverti come guida.</p>
-        <form action="/areariservata/candidati" method="post" enctype="multipart/form-data">
+        <form action="/areariservata/candidati" method="post" enctype="multipart/form-data" th:object="${candidato}">
             <div class="mb-3">
                 <label for="shortDescription" class="form-label">Breve descrizione di sé</label>
                 <textarea class="form-control" id="shortDescription" name="descrizione" rows="3"
-                          placeholder="Scrivi una breve descrizione di te" required></textarea>
+                          placeholder="Scrivi una breve descrizione di te" required th:field="*{descrizione}"></textarea>
             </div>
             <div class="mb-3">
                 <label for="phoneNumber" class="form-label">Recapito Telefonico</label>
                 <input type="tel" class="form-control" id="phoneNumber" name="telefono"
-                       placeholder="Inserisci il tuo numero di telefono" required>
+                       placeholder="Inserisci il tuo numero di telefono" required th:field="*{telefono}">
             </div>
             <div class="mb-3">
                 <label for="personalPhoto" class="form-label">Fotografia Personale</label>
-                <input type="file" class="form-control" id="personalPhoto" name="foto" accept="image/*" required>
+                <input type="file" class="form-control" id="personalPhoto" name="foto" accept="image/*" required th:field="*{foto}">
             </div>
             <button type="submit" class="btn btn-success">Invia Richiesta</button>
         </form>

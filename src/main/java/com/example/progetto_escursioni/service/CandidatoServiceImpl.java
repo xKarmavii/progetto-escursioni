@@ -17,27 +17,20 @@ public class CandidatoServiceImpl implements CandidatoService {
 
 
     @Override
-    public void salvaCandidato(MultipartFile foto, String descrizione, String telefono, Utente utente) {
-
-        Candidato candidato = new Candidato();
-
-        try {
-            String formato = foto.getContentType();
-
-            String fotoCodificata = "data:" + formato + ";base64," + Base64.getEncoder().encodeToString(foto.getBytes());
-
-            candidato.setFoto(fotoCodificata);
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        candidato.setDescrizione(descrizione);
-
-        candidato.setTelefono(telefono);
-
-        candidato.setUtente(utente);
+    public void salvaCandidato(Candidato candidato) {
 
         candidatoDao.save(candidato);
+    }
+
+    @Override
+    public boolean controlloCandidato(int idUtente) {
+
+        Candidato candidato = candidatoDao.selectCandidatiWhereIdUtente(idUtente);
+
+        if (candidato != null) {
+            return false;
+        }
+
+        return true;
     }
 }

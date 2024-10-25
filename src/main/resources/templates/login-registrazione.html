@@ -115,6 +115,7 @@
                 <input type="password" class="form-control" id="register-password" th:field="*{password}" placeholder="Crea una password"
                        required>
             </div>
+            <p th:if="${messaggioDue != null}" th:text="${messaggioDue}" style="color:red; font-weight: bold; text-align: center;"></p>
             <button type="submit" class="btn btn-success w-100">Registrati</button>
         </form>
         <p class="text-center mt-3">Hai già un account? <a href="#" onclick="showLoginForm()">Accedi</a></p>

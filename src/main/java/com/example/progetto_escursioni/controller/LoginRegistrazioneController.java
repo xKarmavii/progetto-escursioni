@@ -47,8 +47,11 @@ public class LoginRegistrazioneController {
             model.addAttribute("messaggio", "Registrazione effettuata");
         }
         else {
-            model.addAttribute("messaggio", "Nome utente o email già in uso");
+            model.addAttribute("messaggioDue", "Nome utente o email già in uso");
         }
+
+        utente = new Utente();
+        model.addAttribute("utente", utente);
 
         return "login-registrazione";
     }

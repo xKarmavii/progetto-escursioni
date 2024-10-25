@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface CandidatoService {
 
-    void salvaCandidato(MultipartFile foto, String descrizione, String telefono, Utente utente);
+    void salvaCandidato(Candidato candidato);
+    boolean controlloCandidato(int idUtente);
     
 }
