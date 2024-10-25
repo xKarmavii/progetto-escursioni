@@ -92,7 +92,7 @@
                     </p>
                     <p><strong>Lunghezza del percorso: </strong><span th:text="${itinerario.distanza}"></span> chilometri</p>
                     <p><strong>Dislivello: </strong><span th:text="${itinerario.dislivello}"></span> metri</p>
-                    <p><strong>Durata media: </strong><span th:text="${itinerario.durataMedia}"></span> ore</p>
+                    <p><strong>Durata media: </strong><span th:with="hours=${T(java.lang.Math).floor(itinerario.durataMedia / 60)}, remainingMinutes=${itinerario.durataMedia % 60}"  th:text="${#numbers.formatDecimal(hours, 0, 'POINT', 0, 'COMMA')} + ' ore e ' + ${remainingMinutes} + ' minuti '"></span></p>
                     <p><strong>Prezzo: </strong><span th:text="${itinerario.prezzo}"></span> euro</p>
                 </div>
             </div>
@@ -124,7 +124,7 @@
 
 
     <div class="text-center mt-5">
-        <button class="btn btn-primary">Prenota Itinerario</button>
+        <a class="btn btn-primary" th:href="@{/checkout(id=${itinerario.id})}">Prenota Itinerario</a>
     </div>
 </div>
 

@@ -33,10 +33,10 @@
         <div class="mb-3">
           <label for="filtro1" class="form-label">Numero di Partecipanti(Max 4)</label>
           <select class="form-select" id="filtro1" method="post" name="numeropartecipanti">
-            <option value="uno">1</option>
-            <option value="due">2</option>
-            <option value="tre">3</option>
-            <option value="quattro">4</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
           </select>
         </div>
       </div>
@@ -75,7 +75,7 @@
           <li class="list-group-item d-flex justify-content-between">
             <div class="mb-3">
               <label for="totale" class="form-label"><strong>Totale:</strong></label>
-              <input type="number" min="0" max="100000" class="form-control text-end" id="totale" required disabled placeholder="€0.00" style="width: 100px; text-align: right;">
+              <input th:value="${itinerario.prezzo}" type="number" min="0" max="100000" class="form-control text-end" id="totale" required disabled placeholder="€0.00" style="width: 100px; text-align: right;">
             </div>
           </li>
         </ul>
