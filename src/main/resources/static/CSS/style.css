@@ -1,0 +1,165 @@
+        /*
+            -forest-green: #2C5530;
+            -sage: #87976D;
+            -earth-brown: #8B7355;
+            -cream: #F5F1E9;
+            -stone: #D3CBBF;
+            -moss: #4A593D;
+        */
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #F5F1E9;
+            color: #4A593D;
+        }
+
+        header {
+            background-color: white;
+            border-bottom: 1px solid #D3CBBF !important;
+        }
+
+        .nav-item{
+            font-size: 18px;
+            padding-left: 30px !important;
+            padding-right: 30px !important;
+        }
+
+
+        footer {
+            background-image: url("https://media.istockphoto.com/id/2061680164/it/foto/nero-marrone-scuro-grigio-pietra-roccia-granito-basalto-texture-sfondo-superficie-delle.jpg?s=1024x1024&w=is&k=20&c=RYMXaZ6RnCpFuAFVZL9N9e_7gUNRup-l122rDATfBnE=");
+            color: #F5F1E9;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
+        }
+
+        .nav-link {
+            color: #4A593D !important;
+            font-weight: 500;
+             transition: transform 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        .nav-link:hover {
+            color: #2C5530 !important;
+            transform: translateY(-5px);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            background-color: #2C5530;
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #4A593D;
+            color: white;
+        }
+
+        .btn-outline {
+            color: #2C5530;
+            border: 2px solid #2C5530;
+            background-color: transparent;
+            font-weight: bold;
+        }
+
+        .btn-outline:hover {
+            background-color: #2C5530;
+            border-color: #2C5530;
+            color: white;
+        }
+
+        .bg {
+            background-image: url("https://cdn.discordapp.com/attachments/1264213314632945674/1298641092194996315/Cascate-di-Stanghe-iltrentinodeibambini-4.png?ex=671b9ec3&is=671a4d43&hm=67bd9e17688c4cdc6ef84c91da8f975aa5fd1da41b5f00ba7e373e75d40a091c&");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 80px 0;
+        }
+
+        .bg > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-select {
+            border-color:  #D3CBBF;
+            color: #4A593D;
+        }
+
+        .form-select:focus {
+            border-color: #87976D;
+            box-shadow: 0 0 0 0.25rem rgba(135, 151, 109, 0.25);
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid  #D3CBBF;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(139, 115, 85, 0.1);
+        }
+
+        .card-title {
+            color: #2C5530;
+            font-weight: 600;
+        }
+
+        .card-text {
+            color: #4A593D;
+        }
+
+        #chi-siamo {
+            background-color: white;
+        }
+
+        #chi-siamo p {
+            font-size: 20px;
+        }
+
+        #chi-siamo h2 {
+            color: #2C5530;
+            font-weight: 600;
+        }
+
+        footer h5 {
+            color: #F5F1E9;
+            font-weight: 600;
+        }
+
+        footer a {
+            color: #F5F1E9 !important;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white !important;
+        }
+
+        footer ul li {
+            color: #F5F1E9;
+            font-size: 18px;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+
+        .search-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }

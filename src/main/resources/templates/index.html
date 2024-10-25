@@ -4,70 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layout con Bootstrap e Card</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet">
-    <style>
-        .bg {
-        background-image: url("https://cdn.discordapp.com/attachments/1264213314632945674/1298641092194996315/Cascate-di-Stanghe-iltrentinodeibambini-4.png?ex=671b9ec3&is=671a4d43&hm=67bd9e17688c4cdc6ef84c91da8f975aa5fd1da41b5f00ba7e373e75d40a091c&");
-        background-repeat: no-repeat;
-        background-size: 100% auto;
-        background-position: center;
-        }
-    </style>
+    <link th:href="@{CSS/style.css}" rel="stylesheet">
 </head>
 <body>
 
-<!-- Header con logo e menu -->
-<header class="container-fluid border-bottom">
+<header class="container-fluid">
     <nav class="navbar navbar-expand-sm navbar-light p-0">
         <div class="container-fluid px-0">
-            <!-- Logo -->
             <div class="d-flex justify-content-center align-items-center" style="width: 100px; height: 100px;">
-                <img src="/static/logo_no_sfondo_ritaglio.png"
-                     alt="logo" class="img-fluid" style="max-height: 80px; width: auto;">
+                <img src="https://cdn.discordapp.com/attachments/1298557066683744276/1299304808443940894/logo_no_sfondo_ritaglio.png?ex=671cb766&is=671b65e6&hm=2b999e75f81ce009dbe935dc80a296fdf0c1852e8bab36a9d6461cf9d059b2e1&" alt="logo" class="img-fluid" style="max-height: 80px; width: auto;">
             </div>
 
-            <!-- Hamburger button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Contenuto navbar collassabile -->
-            <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="collapse navbar-collapse " id="navbarContent">
                 <ul class="navbar-nav mx-auto text-center">
-                    <li class="nav-item px-2">
-                        <a class="nav-link" th:href="@{/}">Home</a>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" th:href="@{/}">Home</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" th:href="@{/itinerari}">Itinerari</a>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" th:href="@{/itinerari}">Itinerari</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" th:href="@{/guide}">Guide</a>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" th:href="@{/guide}">Guide</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" th:href="@{/#chi-siamo}">Chi Siamo</a>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" th:href="@{/#chi-siamo}">Chi Siamo</a>
                     </li>
                 </ul>
 
-                <!-- Area Riservata -->
                 <div class="text-center text-sm-end mt-3 mt-sm-0">
-                    <a th:href="@{/areariservata}" class="btn btn-outline-secondary">Area Riservata</a>
+                    <a th:href="@{/areariservata}" class="btn btn-outline">Area Riservata</a>
                 </div>
             </div>
         </div>
     </nav>
 </header>
 
-<!-- Sezione principale con select delle regioni e bottone cerca -->
 <section class="container-fluid py-5 bg">
     <div class="row justify-content-center align-items-center" style="min-height: 400px;">
         <div class="col-12 col-md-6">
-            <div class="bg-light p-4 rounded">
+            <div class="search-container">
                 <form action="/itinerari" method="post" class="d-flex gap-3">
-                    <!-- Select delle regioni -->
                     <select class="form-select" aria-label="Seleziona Regione" name="regione">
                         <option selected disabled>Seleziona una regione...</option>
                         <option value="tutteregioni">Tutte le regioni</option>
@@ -92,26 +74,22 @@
                         <option value="valle-d-aosta">Valle d'Aosta</option>
                         <option value="veneto">Veneto</option>
                     </select>
-                    <!-- Bottone Cerca -->
-                    <button class="btn btn-primary" type="submit">Cerca</button>
+                    <button class="btn" type="submit">Cerca</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Sezione 'Chi siamo' -->
-<section id="chi-siamo" class="container-fluid py-5 bg-light">
+<section id="chi-siamo" class="container-fluid py-5">
     <div class="container">
         <h2 class="text-center mb-4">Chi Siamo</h2>
-        <p class="text-center">Breve descrizione o contenuto riguardante il team o l'azienda.</p>
+        <p class="text-center">Siamo un'azienda specializzata nella creazione di itinerari unici in tutta Italia, pensati per farti scoprire il meglio del nostro paese. Dai percorsi enogastronomici alle avventure outdoor, ogni viaggio è disegnato con passione per farti vivere esperienze autentiche e indimenticabili. Affidati a noi per esplorare l'Italia come mai prima d'ora, con un tocco di qualità e cura in ogni dettaglio.</p>
     </div>
 </section>
 
-<!-- Card con percorsi -->
 <section class="container py-5">
     <div class="row g-4">
-        <!-- Card 1 -->
         <div class="col-12 col-md-4" th:each="itinerario : ${caroselloItinerari}">
             <div class="card h-100">
                 <img th:src="@{${itinerario.immagine == null ? 'markerImage.png' : itinerario.immagine}}"
@@ -123,41 +101,37 @@
                     <p class="card-text" th:text="${itinerario.descrizione}">
                         Descrizione breve del Percorso 1. Scopri i paesaggi mozzafiato e i sentieri avventurosi.
                     </p>
-                    <a th:href="@{/dettaglio(id=${itinerario.id})}" class="btn btn-primary mt-auto">Scopri di più</a>
+                    <a th:href="@{/dettaglio(id=${itinerario.id})}" class="btn mt-auto">Scopri di più</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Footer con contatti e social -->
-<footer class="bg-light py-5 mt-5">
+<footer class="mt-4">
     <div class="container">
         <div class="row gy-4">
-            <!-- Colonna contatti -->
             <div class="col-12 col-md-6">
-                <h5 class="mb-3">Contatti</h5>
+                <h5 class="mb-2">Contatti</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2">Email: info@example.com</li>
                     <li class="mb-2">Telefono: +39 123 456 789</li>
                     <li>Indirizzo: Via Roma 123, 00100 Roma, Italia</li>
                 </ul>
             </div>
-            <!-- Colonna social -->
             <div class="col-12 col-md-6 text-md-end">
                 <h5 class="mb-3">Seguici sui Social</h5>
-                <div class="d-flex gap-3 justify-content-md-end justify-content-start">
-                    <a href="#" class="text-dark fs-4"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-dark fs-4"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="text-dark fs-4"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-dark fs-4"><i class="bi bi-linkedin"></i></a>
+                <div class="d-flex gap-3 justify-content-md-end justify-content-start social-icons">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </footer>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
