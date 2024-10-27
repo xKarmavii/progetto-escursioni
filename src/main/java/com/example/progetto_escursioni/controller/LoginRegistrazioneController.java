@@ -16,9 +16,19 @@ public class LoginRegistrazioneController {
     private UtenteService utenteService;
 
     @GetMapping
-    public String getPage(Model model) {
+    public String getPage(
+            HttpSession session,
+            Model model) {
+
+        // se provi a riaccedere alla pagina di login quando sei già registrato (modificando l'URL), vieni reindirizzato all'area riservata
+        if (session.getAttribute("utente") != null) {
+            return "redirect:/areariservata";
+        }
+
+        // crea un nuovo oggetto utente e lo registra nel model perché il form di registrazione ha il binding con esso
         Utente utente = new Utente();
         model.addAttribute("utente", utente);
+
         return "login-registrazione";
     }
 
@@ -29,10 +39,13 @@ public class LoginRegistrazioneController {
                                @RequestParam("login-username") String username,
                                @RequestParam("login-password") String password) {
 
+
         if (utenteService.loginUtente(session, username, password)) {
-            return "redirect:/areariservata";
+            // se il login ha successo (ovvero se c'è un utente corrispondente sul database) allora reindirizza all'area riservata
+            return "redirect:/" + (String)session.getAttribute("paginaPrecedente");
         }
         else {
+            // altrimenti registra nel model un messaggio di errore, da mostrare sul form di login
             model.addAttribute("messaggio", "Credenziali errate");
         }
         return "login-registrazione";
@@ -42,14 +55,16 @@ public class LoginRegistrazioneController {
     public String registrazioneManager(Model model,
                                        @ModelAttribute("utente") Utente utente) {
 
+        // controllo per vedere se username o password sono già in uso
         if (utenteService.controlloUsernameEmail(utente.getUsername(), utente.getEmail())) {
-            utenteService.salvaUtente(utente);
-            model.addAttribute("messaggio", "Registrazione effettuata");
+            utenteService.salvaUtente(utente); // se è tutto ok salva l'utente sul database
+            model.addAttribute("messaggio", "Registrazione effettuata"); // questo messaggio deve comparire sul form di login
         }
         else {
-            model.addAttribute("messaggioDue", "Nome utente o email già in uso");
+            model.addAttribute("messaggioDue", "Nome utente o email già in uso"); // questo messaggio deve comparire sul form di registrazione
         }
 
+        // reinizializza l'oggetto utente e sovrascrive l'oggetto salvato nel model, così i campi del form di registrazione di svuotano (perché c'è il binding tra form e oggetto utente)
         utente = new Utente();
         model.addAttribute("utente", utente);
 

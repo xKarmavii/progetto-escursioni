@@ -32,14 +32,18 @@ public class CheckoutController {
                           Model model,
                           @RequestParam(name = "id", required = false) Integer idItinerario) {
 
+        // se l'utente modifica l'URL e accede a questa pagina senza che ci sia l'id di un itinerario, viene reindirizzato alla home
         if(idItinerario == null) {
             return "redirect:/";
         }
 
+        // check per vedere se l'utente è loggato o meno, nel caso reindirizza alla pagina di login
         if (session.getAttribute("utente") != null) {
+            // recupera l'utente salvato in sessione e lo registra nel model
             Utente utente = (Utente) session.getAttribute("utente");
             model.addAttribute("utente", utente);
 
+            // recupera l'itinerario in base al parametro di id e lo registra nel model
             Itinerario itinerario = itinerarioService.dettaglioItinerario(idItinerario);
             model.addAttribute("itinerario", itinerario);
 
@@ -56,11 +60,14 @@ public class CheckoutController {
     public String modificaPrezzo(
             @RequestParam("id") int idItinerario,
             @RequestParam("partecipanti") int partecipanti){
+        // recupero un oggetto itinerario in base all'id fornito, per poter poi acquisire il prezzo base per persona
         Itinerario itinerario = itinerarioService.dettaglioItinerario(idItinerario);
 
+        // per formattare il prezzo
         DecimalFormat format = new DecimalFormat("#.##");
         format.setRoundingMode((RoundingMode.HALF_EVEN));
 
+        // ritorno una stringa con la struttura (€ + prezzo * numero di partecipanti); la parte numerica di prezzo è opportunamente formattata con format()
         return "€" + format.format((itinerario.getPrezzo()*partecipanti));
     }
 
@@ -70,14 +77,18 @@ public class CheckoutController {
                                     @RequestParam("numeroPartecipanti") int numeroPartecipanti,
                                     @RequestParam("totale") String totaleString,
                                     @RequestParam("idItinerario") int idItinerario){
+        // creo un oggetto prenotazione vuoto
         Prenotazione prenotazione = new Prenotazione();
+        // recupero l'oggetto utente dalla sessione (perché per prenotare l'utente dev'essere loggato)
         Utente utente = (Utente) session.getAttribute("utente");
+        // recupero l'oggetto itinerario a partire dall'id, che è presente nel form in un campo hidden
         Itinerario itinerario = itinerarioService.dettaglioItinerario(idItinerario);
 
-        LocalDateTime dataPrenotazione = LocalDateTime.now();
+        LocalDateTime dataPrenotazione = LocalDateTime.now(); // la data in cui viene effettuata la prenotazione è la data attuale
         LocalDate dataEscursione = LocalDate.now(); // DA CAMBIARE! CI SIAMO SCORDATI DI IMPLEMENTARE LE DATE PER GLI ITINERARI. AL MOMENTO COME PLACEHOLDER PRENDE LA DATA ODIERNA
-        double prezzoTotale = Double.parseDouble(totaleString.replace("€","").replace(",","."));
+        double prezzoTotale = Double.parseDouble(totaleString.replace("€","").replace(",",".")); // per semplicità nel form il campo del totale è un type text (così possiamo scriverci direttamente "€" accanto); per salvare solo la parte numerica dobbiamo prima togliere € e poi sostituire la virgola con il punto (perché Java usa il punto per i decimali)
 
+        // inizializzo le variabili dell'oggetto prenotazione con i valori recuperati
         prenotazione.setDataPrenotazione(dataPrenotazione);
         prenotazione.setDataEscursione(dataEscursione);
         prenotazione.setNumeroPartecipanti(numeroPartecipanti);
@@ -85,8 +96,10 @@ public class CheckoutController {
         prenotazione.setItinerario(itinerario);
         prenotazione.setUtente(utente);
 
+        // salvo la prenotazione sul database
         prenotazioneService.salvaPrenotazione(prenotazione);
 
-        return "redirect:/itinerari";
+        // DOVREMMO AGGIUNGERE NELL'AREA RISERVATA UNA SEZIONE DOVE L'UTENTE PUò VEDERE LE PRENOTAZIONI EFFETTUATE
+        return "redirect:/areariservata";
     }
 }
