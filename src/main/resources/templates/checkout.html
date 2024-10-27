@@ -12,7 +12,7 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">Checkout</h2>
 
-  <form id="checkoutForm">
+  <form id="checkoutForm" method="post" action="/checkout/invia">
     <!-- Sezione Dettagli Cliente -->
     <div class="card mb-4">
       <div class="card-header">
@@ -20,17 +20,17 @@
       </div>
       <div class="card-body">
         <div class="mb-3">
-          <label for="name" class="form-label">Nome Completo</label>
-          <input type="text" class="form-control" id="name" placeholder="Inserisci il tuo nome completo" required>
+          <label for="name" class="form-label">Nome e cognome</label>
+          <input type="text" class="form-control" id="name" placeholder="Inserisci il tuo nome completo" required readonly th:value="${utente.nome} + ' ' + ${utente.cognome}">
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Inserisci la tua email" required>
+          <input type="email" class="form-control" id="email" placeholder="Inserisci la tua email" required readonly th:value="${utente.email}">
         </div>
-        <div class="mb-3">
-          <label for="phone" class="form-label">Numero di Telefono</label>
-          <input type="tel" class="form-control" id="phone" placeholder="Inserisci il tuo numero di telefono" required>
-        </div>
+<!--        <div class="mb-3">-->
+<!--          <label for="phone" class="form-label">Numero di Telefono</label>-->
+<!--          <input type="tel" class="form-control" id="phone" placeholder="Inserisci il tuo numero di telefono" required>-->
+<!--        </div>-->
         <div class="mb-3">
           <label for="numeroPartecipanti" class="form-label">Numero di Partecipanti(Max 4)</label>
           <select class="form-select" id="numeroPartecipanti" method="post" name="numeroPartecipanti">
@@ -75,8 +75,9 @@
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between">
             <div class="mb-3">
+              <input type="hidden" id="idItinerario" th:value="${itinerario.id}" name="idItinerario">
               <label for="totale" class="form-label"><strong>Totale:</strong></label>
-              <input th:value="${itinerario.prezzo}" type="number" min="0" max="100000" class="form-control text-end" id="totale" required disabled placeholder="€0.00" style="width: 100px; text-align: right;">
+              <input type="text" min="0" max="100000" class="form-control text-end" id="totale" required readonly value="€0.00" style="width: 100px; text-align: right;" form="checkoutForm" name="totale">
             </div>
           </li>
         </ul>
