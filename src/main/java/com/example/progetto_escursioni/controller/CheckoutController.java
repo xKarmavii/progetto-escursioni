@@ -113,7 +113,11 @@ public class CheckoutController {
         // salvo la prenotazione sul database
         prenotazioneService.salvaPrenotazione(prenotazione);
 
-        // DOVREMMO AGGIUNGERE NELL'AREA RISERVATA UNA SEZIONE DOVE L'UTENTE PUò VEDERE LE PRENOTAZIONI EFFETTUATE
         return "redirect:/areariservata";
+    }
+
+    @GetMapping("/indietro")
+    public String tornaIndietro(HttpSession session) {
+        return "redirect:/" + session.getAttribute("paginaPrecedente");
     }
 }

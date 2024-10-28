@@ -42,7 +42,7 @@ public class LoginRegistrazioneController {
 
         if (utenteService.loginUtente(session, username, password)) {
             // se il login ha successo (ovvero se c'è un utente corrispondente sul database) allora reindirizza all'area riservata
-            return "redirect:/" + (String)session.getAttribute("paginaPrecedente");
+            return "redirect:/" + session.getAttribute("paginaPrecedente");
         }
         else {
             // altrimenti registra nel model un messaggio di errore, da mostrare sul form di login
@@ -69,5 +69,10 @@ public class LoginRegistrazioneController {
         model.addAttribute("utente", utente);
 
         return "login-registrazione";
+    }
+
+    @GetMapping("/indietro")
+    public String tornaIndietro(HttpSession session) {
+        return "redirect:/" + session.getAttribute("paginaPrecedente");
     }
 }
