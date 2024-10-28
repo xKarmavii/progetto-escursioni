@@ -31,7 +31,8 @@ public class AreaRiservataController {
     @GetMapping
     public String getPage(HttpSession session,
                           Model model,
-                          @ModelAttribute("utente") Utente utente) {
+                          @ModelAttribute("utente") Utente utente,
+                          @RequestParam(name = "candidatura", required = false) String successoCandidatura) {
 
         if (session.getAttribute("utente") != null) {
             utente = (Utente) session.getAttribute("utente");
@@ -40,6 +41,14 @@ public class AreaRiservataController {
             model.addAttribute("candidato", candidato);
             List<Prenotazione> prenotazioni = prenotazioneService.elencoPrenotazioniUtente(utente.getId());
             model.addAttribute("prenotazioni", prenotazioni);
+
+            // messaggi di successo o errore per candidatura
+            if(successoCandidatura != null && successoCandidatura.equals("true")){
+                model.addAttribute("messaggio", "Candidatura inviata con successo!");
+            } else if (successoCandidatura != null && successoCandidatura.equals("false")){
+                model.addAttribute("messaggio", "Non puoi inviare un'altra candidatura!");
+            }
+
             return "areariservata";
         }
         else {
@@ -60,20 +69,13 @@ public class AreaRiservataController {
         Utente utente = (Utente) session.getAttribute("utente");
 
         if (candidatoService.controlloCandidato(utente.getId())) {
-
             candidato.setUtente(utente);
             candidatoService.salvaCandidato(candidato);
-            model.addAttribute("messaggio", "Candidatura inviata con successo!");
+            return "redirect:/areariservata?candidatura=true";
         }
         else {
-            model.addAttribute("messaggio", "Non puoi inviare un'altra candidatura!");
+            return "redirect:/areariservata?candidatura=false";
         }
 
-
-        candidato = new Candidato();
-        model.addAttribute("candidato", candidato);
-        model.addAttribute("utente", utente);
-
-        return "areariservata";
     }
 }

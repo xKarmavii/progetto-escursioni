@@ -18,7 +18,9 @@ public class LoginRegistrazioneController {
     @GetMapping
     public String getPage(
             HttpSession session,
-            Model model) {
+            Model model,
+            @RequestParam(name = "erroreCredenziali", required = false) String erroreCredenziali,
+            @RequestParam(name = "successoRegistrazione", required = false) String successoRegistrazione) {
 
         // se provi a riaccedere alla pagina di login quando sei già registrato (modificando l'URL), vieni reindirizzato all'area riservata
         if (session.getAttribute("utente") != null) {
@@ -28,6 +30,18 @@ public class LoginRegistrazioneController {
         // crea un nuovo oggetto utente e lo registra nel model perché il form di registrazione ha il binding con esso
         Utente utente = new Utente();
         model.addAttribute("utente", utente);
+
+        // messaggio di errore per login
+        if(erroreCredenziali != null) {
+            model.addAttribute("messaggio", "Credenziali errate");
+        }
+
+        // messaggi di successo o errore per registrazione
+        if(successoRegistrazione != null && successoRegistrazione.equals("true")){
+            model.addAttribute("messaggio", "Registrazione effettuata"); // questo messaggio deve comparire sul form di login
+        } else if(successoRegistrazione != null && successoRegistrazione.equals("false")) {
+            model.addAttribute("messaggioDue", "Nome utente o email già in uso"); // questo messaggio deve comparire sul form di registrazione
+        }
 
         return "login-registrazione";
     }
@@ -44,11 +58,8 @@ public class LoginRegistrazioneController {
             // se il login ha successo (ovvero se c'è un utente corrispondente sul database) allora reindirizza all'area riservata
             return "redirect:/" + session.getAttribute("paginaPrecedente");
         }
-        else {
-            // altrimenti registra nel model un messaggio di errore, da mostrare sul form di login
-            model.addAttribute("messaggio", "Credenziali errate");
-        }
-        return "login-registrazione";
+
+        return "redirect:/loginregistrazione?erroreCredenziali";
     }
 
     @PostMapping("/registrazione")
@@ -58,17 +69,11 @@ public class LoginRegistrazioneController {
         // controllo per vedere se username o password sono già in uso
         if (utenteService.controlloUsernameEmail(utente.getUsername(), utente.getEmail())) {
             utenteService.salvaUtente(utente); // se è tutto ok salva l'utente sul database
-            model.addAttribute("messaggio", "Registrazione effettuata"); // questo messaggio deve comparire sul form di login
+            return "redirect:/loginregistrazione?successoRegistrazione=true";
         }
         else {
-            model.addAttribute("messaggioDue", "Nome utente o email già in uso"); // questo messaggio deve comparire sul form di registrazione
+            return "redirect:/loginregistrazione?successoRegistrazione=false";
         }
-
-        // reinizializza l'oggetto utente e sovrascrive l'oggetto salvato nel model, così i campi del form di registrazione di svuotano (perché c'è il binding tra form e oggetto utente)
-        utente = new Utente();
-        model.addAttribute("utente", utente);
-
-        return "login-registrazione";
     }
 
     @GetMapping("/indietro")
