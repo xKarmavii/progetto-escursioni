@@ -22,6 +22,15 @@ public class Prenotazione {
     @Column(name = "prezzo_totale")
     private double prezzoTotale;
 
+    @Column(name = "nome_completo")
+    private String nomeCompleto;
+
+    @Column
+    private String email;
+
+    @Column
+    private String telefono;
+
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_itinerario", referencedColumnName = "id")
     private Itinerario itinerario;
@@ -68,6 +77,30 @@ public class Prenotazione {
 
     public void setPrezzoTotale(double prezzoTotale) {
         this.prezzoTotale = prezzoTotale;
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public Itinerario getItinerario() {

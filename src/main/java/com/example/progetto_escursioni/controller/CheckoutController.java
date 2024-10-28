@@ -76,7 +76,10 @@ public class CheckoutController {
     public String invioPrenotazione(HttpSession session,
                                     @RequestParam("numeroPartecipanti") int numeroPartecipanti,
                                     @RequestParam("totale") String totaleString,
-                                    @RequestParam("idItinerario") int idItinerario){
+                                    @RequestParam("idItinerario") int idItinerario,
+                                    @RequestParam("nomeCompleto") String nomeCompleto,
+                                    @RequestParam("email") String email,
+                                    @RequestParam("telefono") String telefono){
         // creo un oggetto prenotazione vuoto
         Prenotazione prenotazione = new Prenotazione();
         // recupero l'oggetto utente dalla sessione (perché per prenotare l'utente dev'essere loggato)
@@ -93,6 +96,9 @@ public class CheckoutController {
         prenotazione.setDataEscursione(dataEscursione);
         prenotazione.setNumeroPartecipanti(numeroPartecipanti);
         prenotazione.setPrezzoTotale(prezzoTotale);
+        prenotazione.setNomeCompleto(nomeCompleto);
+        prenotazione.setEmail(email);
+        prenotazione.setTelefono(telefono);
         prenotazione.setItinerario(itinerario);
         prenotazione.setUtente(utente);
 
