@@ -218,14 +218,17 @@
                 <h5 th:text="${prenotazione.itinerario.nome}">Nome Itinerario</h5>
                 <div class="booking-info">
                     <div class="booking-detail">
+                        <p><strong>Nominativo:</strong> <span th:text="${prenotazione.nomeCognome}">Luca Rizzolo</span></p>
+                        <p><strong>Email:</strong> <span th:text="${prenotazione.email}"></span></p>
+                        <p><strong>Numero di telefono:</strong> <span th:text="${prenotazione.telefono}"></span></p>
+                    </div>
+                    <div class="booking-detail">
                         <p><strong>Data:</strong> <span th:text="${#temporals.format(prenotazione.dataEscursione, 'dd/MM/yyyy')}">01/01/2024</span></p>
                         <p><strong>Ora:</strong> <span th:text="${prenotazione.oraEscursione}">10:00</span></p>
-                    </div>
-                    <div class="booking-detail">
                         <p><strong>Numero Partecipanti:</strong> <span th:text="${prenotazione.numeroPartecipanti}">2</span></p>
-                        <p><strong>Guida:</strong> <span th:text="${prenotazione.itinerario.guida.nome} + ' ' + ${prenotazione.itinerario.guida.cognome}">Mario Rossi</span></p>
                     </div>
                     <div class="booking-detail">
+                        <p><strong>Guida:</strong> <span th:text="${prenotazione.itinerario.guida.nome} + ' ' + ${prenotazione.itinerario.guida.cognome}">Mario Rossi</span></p>
                         <p><strong>Data di prenotazione:</strong> <span th:text="${#temporals.format(prenotazione.dataPrenotazione, 'dd/MM/yyyy HH:mm')}"></span></p>
                         <p><strong>Prezzo Totale:</strong> <span th:text="${prenotazione.prezzoTotale + '€'}">50€</span></p>
                     </div>
