@@ -13,6 +13,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -81,7 +82,8 @@ public class CheckoutController {
                                     @RequestParam("idItinerario") int idItinerario,
                                     @RequestParam("nomeCompleto") String nomeCompleto,
                                     @RequestParam("email") String email,
-                                    @RequestParam("telefono") String telefono){
+                                    @RequestParam("telefono") String telefono,
+                                    @RequestParam("dataOraScelta") String dataOraScelta){
         // creo un oggetto prenotazione vuoto
         Prenotazione prenotazione = new Prenotazione();
         // recupero l'oggetto utente dalla sessione (perché per prenotare l'utente dev'essere loggato)
@@ -90,12 +92,16 @@ public class CheckoutController {
         Itinerario itinerario = itinerarioService.dettaglioItinerario(idItinerario);
 
         LocalDateTime dataPrenotazione = LocalDateTime.now(); // la data in cui viene effettuata la prenotazione è la data attuale
-        LocalDate dataEscursione = LocalDate.now(); // DA CAMBIARE! CI SIAMO SCORDATI DI IMPLEMENTARE LE DATE PER GLI ITINERARI. AL MOMENTO COME PLACEHOLDER PRENDE LA DATA ODIERNA
         double prezzoTotale = Double.parseDouble(totaleString.replace("€","").replace(",",".")); // per semplicità nel form il campo del totale è un type text (così possiamo scriverci direttamente "€" accanto); per salvare solo la parte numerica dobbiamo prima togliere € e poi sostituire la virgola con il punto (perché Java usa il punto per i decimali)
+        String[] dataOraArray = dataOraScelta.split(" - ");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate dataEscursione = LocalDate.parse(dataOraArray[0], formatter);
+        String oraEscursione = dataOraArray[1];
 
         // inizializzo le variabili dell'oggetto prenotazione con i valori recuperati
         prenotazione.setDataPrenotazione(dataPrenotazione);
         prenotazione.setDataEscursione(dataEscursione);
+        prenotazione.setOraEscursione(oraEscursione);
         prenotazione.setNumeroPartecipanti(numeroPartecipanti);
         prenotazione.setPrezzoTotale(prezzoTotale);
         prenotazione.setNomeCompleto(nomeCompleto);

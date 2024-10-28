@@ -96,7 +96,7 @@
                     <p><strong>Prezzo: </strong><span th:text="${itinerario.prezzo}"></span> euro</p>
                     <p><strong>Date disponibili: </strong></p>
                     <ul>
-                        <li>11/09/2001 12:00</li>
+                        <li th:each="data : ${dateDisponibili}" th:text="${#temporals.format(data.data, 'dd/MM/yyyy')} + ' - ' + ${data.ora}">11/09/2001 12:00</li>
                     </ul>
                 </div>
             </div>

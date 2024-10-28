@@ -1,5 +1,6 @@
 package com.example.progetto_escursioni.controller;
 
+import com.example.progetto_escursioni.model.DataDisponibile;
 import com.example.progetto_escursioni.model.Foto;
 import com.example.progetto_escursioni.model.Itinerario;
 import com.example.progetto_escursioni.service.ItinerarioService;
@@ -33,6 +34,10 @@ public class DettaglioController {
         // recupero la lista delle foto associate all'itinerario e le registro nel model
         List<Foto> fotoItinerario = itinerario.getFotoItinerario();
         model.addAttribute("fotoItinerario", fotoItinerario);
+
+        // recupero la lista delle date disponibili associate all'itinerario e le registro nel model
+        List<DataDisponibile> dateDisponibili = itinerario.getDateDisponibiliItinerario();
+        model.addAttribute("dateDisponibili", dateDisponibili);
 
         // registro in sessione la pagina corrente, per eventuali tasti "indietro" o per quando fai il login
         session.setAttribute("paginaPrecedente", "dettaglio?id=" + itinerario.getId());

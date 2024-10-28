@@ -13,8 +13,12 @@ public class Prenotazione {
     private int id;
     @Column(name = "data_prenotazione")
     private LocalDateTime dataPrenotazione;
+
     @Column(name = "data_escursione")
     private LocalDate dataEscursione;
+
+    @Column(name = "ora_escursione")
+    private String oraEscursione;
 
     @Column(name = "numero_partecipanti")
     private int numeroPartecipanti;
@@ -61,6 +65,14 @@ public class Prenotazione {
 
     public void setDataEscursione(LocalDate dataEscursione) {
         this.dataEscursione = dataEscursione;
+    }
+
+    public String getOraEscursione() {
+        return oraEscursione;
+    }
+
+    public void setOraEscursione(String oraEscursione) {
+        this.oraEscursione = oraEscursione;
     }
 
     public int getNumeroPartecipanti() {

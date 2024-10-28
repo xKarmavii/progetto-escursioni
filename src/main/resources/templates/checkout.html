@@ -33,7 +33,7 @@
         </div>
         <div class="mb-3">
           <label for="numeroPartecipanti" class="form-label">Numero di Partecipanti (Max 4): </label>
-          <select class="form-select" id="numeroPartecipanti" method="post" name="numeroPartecipanti">
+          <select class="form-select" id="numeroPartecipanti" name="numeroPartecipanti">
             <option selected disabled>Scegliere numero di partecipanti</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -43,9 +43,9 @@
         </div>
         <div class="mb-3">
           <label for="dateDisponibili" class="form-label">Date Disponibili: </label>
-          <select class="form-select" id="dateDisponibili" method="post" name="dateDisponibili">
+          <select class="form-select" id="dateDisponibili" name="dataOraScelta">
             <option selected disabled>Scegliere data</option>
-            <option th:each="data : ${dateDisponibili}"></option>
+            <option th:each="data : ${dateDisponibili}" th:text="${#temporals.format(data.data, 'dd/MM/yyyy')} + ' - ' + ${data.ora}"></option>
           </select>
         </div>
       </div>
@@ -82,10 +82,11 @@
       <div class="card-body">
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span class="align-middle">Placeholder:</span>
+              <input type="hidden" id="idItinerario" th:value="${itinerario.id}" name="idItinerario">
+            <span class="align-middle" th:text="${itinerario.nome}">Placeholder:</span>
             <div class="d-flex align-items-center">
               <label for="totale" class="form-label me-2 mb-0 align-middle"><strong>Totale:</strong></label>
-              <input type="text" min="0" max="100000" class="form-control text-center" id="totale" required readonly value="€0.00" style="width: 100px; text-align: right;" form="checkoutForm" name="totale">
+              <input type="text" class="form-control text-center" id="totale" required readonly value="€0.00" style="width: 100px; text-align: right;" form="checkoutForm" name="totale">
             </div>
           </li>
         </ul>
