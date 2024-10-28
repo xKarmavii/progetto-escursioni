@@ -6,25 +6,44 @@
     <title>Login e Registrazione - Prenotazioni</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <link th:href="@{CSS/style.css}" rel="stylesheet">
     <style>
         .form-container {
-            margin-top: 50px;
-            max-width: 400px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
+           width: 420px;
+           background: transparent;
+           padding: 20px;
+           border-radius: 10px;
+           padding: 30px 40px;
+           border : 2px solid rgba(255, 255, 255, .2);
+           color: #fff;
+           backdrop-filter: blur(20px);
+           box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+       }
+       .btn-custom {
+           background-color: red; /* Colore verde personalizzato */
+           border: none;
+           color: white;
+       }
+       .btn-custom:hover {
+        background-color: red; /* Colore verde più scuro per hover */
+       }
+       body {
+           background-image: url("sfondoLogin.jpg");
+       }
     </style>
 </head>
 <body>
 
 <div class="container mt-5">
-    <a th:href="@{/loginregistrazione/indietro}" class="btn btn-danger mb-4">Indietro</a>
 
     <!-- Form di Login -->
     <div class="form-container mx-auto" id="login-form">
+        <div>
+            <a th:href="@{/checkout/indietro}" class="btn btn-custom">
+                <i class="bi bi-arrow-left"></i> <!-- Icona freccia -->
+            </a>
+        </div>
         <h2 class="text-center">Accedi</h2>
         <form method="post" action="/loginregistrazione/login">
             <div class="mb-3">
@@ -45,7 +64,12 @@
 
     <!-- Form di Registrazione -->
     <div class="form-container mx-auto d-none" id="register-form">
-        <h2 class="text-center">Registrati</h2>
+        <div>
+            <a th:href="@{/checkout/indietro}" class="btn btn-custom">
+                <i class="bi bi-arrow-left"></i> <!-- Icona freccia -->
+            </a>
+            <h2 class="text-center">Registrati</h2>
+        </div>
         <form method="post" action="/loginregistrazione/registrazione" th:object="${utente}">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome: </label>
@@ -82,6 +106,8 @@
     </div>
 </div>
 
+<!-- Icone Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
