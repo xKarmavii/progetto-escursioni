@@ -45,7 +45,7 @@
           <label for="dateDisponibili" class="form-label">Date Disponibili: </label>
           <select class="form-select" id="dateDisponibili" method="post" name="dateDisponibili">
             <option selected disabled>Scegliere data</option>
-            <option value=""></option>
+            <option th:each="data : ${dateDisponibili}"></option>
           </select>
         </div>
       </div>

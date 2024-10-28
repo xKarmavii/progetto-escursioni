@@ -1,9 +1,6 @@
 package com.example.progetto_escursioni.controller;
 
-import com.example.progetto_escursioni.model.Candidato;
-import com.example.progetto_escursioni.model.Itinerario;
-import com.example.progetto_escursioni.model.Prenotazione;
-import com.example.progetto_escursioni.model.Utente;
+import com.example.progetto_escursioni.model.*;
 import com.example.progetto_escursioni.service.ItinerarioService;
 import com.example.progetto_escursioni.service.PrenotazioneService;
 import jakarta.servlet.http.HttpSession;
@@ -16,6 +13,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping("/checkout")
@@ -46,6 +44,10 @@ public class CheckoutController {
             // recupera l'itinerario in base al parametro di id e lo registra nel model
             Itinerario itinerario = itinerarioService.dettaglioItinerario(idItinerario);
             model.addAttribute("itinerario", itinerario);
+
+            // recupera la lista di date disponibili avendo a disposizione l'itinerario recuperato sopra e registra nel model per futura iterazione
+            List<DataDisponibile> dateDisponibili = itinerario.getDateDisponibiliItinerario();
+            model.addAttribute("dateDisponibili", dateDisponibili);
 
             return "checkout";
         }

@@ -53,9 +53,17 @@ public class Itinerario {
             )
     private List<Foto> fotoItinerario = new ArrayList<>();
 
+    @OneToMany
+            (
+                    mappedBy = "itinerario",
+                    cascade = CascadeType.REMOVE,
+                    fetch = FetchType.EAGER,
+                    orphanRemoval = true
+            )
+    private List<DataDisponibile> dateDisponibiliItinerario = new ArrayList<>();
+
     @Column
     private double prezzo;
-
 
     public int getId() {
         return id;
@@ -151,6 +159,14 @@ public class Itinerario {
 
     public void setFotoItinerario(List<Foto> fotoItinerario) {
         this.fotoItinerario = fotoItinerario;
+    }
+
+    public List<DataDisponibile> getDateDisponibiliItinerario() {
+        return dateDisponibiliItinerario;
+    }
+
+    public void setDateDisponibiliItinerario(List<DataDisponibile> dateDisponibiliItinerario) {
+        this.dateDisponibiliItinerario = dateDisponibiliItinerario;
     }
 
     public double getPrezzo() {
