@@ -15,34 +15,59 @@
 
         header {
             background-color: white;
-            border-bottom: 1px solid #D3CBBF !important;
+            border-bottom: 1px solid #D3CBBF;
         }
 
         .nav-item{
             font-size: 18px;
-            padding-left: 30px !important;
-            padding-right: 30px !important;
-        }
-
-
-        footer {
-            background-image: url("https://media.istockphoto.com/id/2061680164/it/foto/nero-marrone-scuro-grigio-pietra-roccia-granito-basalto-texture-sfondo-superficie-delle.jpg?s=1024x1024&w=is&k=20&c=RYMXaZ6RnCpFuAFVZL9N9e_7gUNRup-l122rDATfBnE=");
-            color: #F5F1E9;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: top;
+            padding-left: 30px;
+            padding-right: 30px;
         }
 
         .nav-link {
-            color: #4A593D !important;
+            color: #4A593D;
             font-weight: 500;
-             transition: transform 0.5s ease, text-shadow 0.5s ease;
+            transition: transform 0.5s ease, text-shadow 0.5s ease;
         }
 
         .nav-link:hover {
-            color: #2C5530 !important;
+            color: #2C5530;
             transform: translateY(-5px);
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg {
+            background-image: url("https://cdn.discordapp.com/attachments/1264213314632945674/1298641092194996315/Cascate-di-Stanghe-iltrentinodeibambini-4.png?ex=671b9ec3&is=671a4d43&hm=67bd9e17688c4cdc6ef84c91da8f975aa5fd1da41b5f00ba7e373e75d40a091c&");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 80px 0;
+        }
+
+        /*
+        .bg > * {
+            position: relative;
+            z-index: 1;
+        }
+        */
+
+        /* User Info Section */
+        .user-info {
+            background-color: white;
+            border: 1px solid #D3CBBF;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .user-info:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Guide Section */
+        .guide-section {
+            background-color: #F5F1E9;
+            border: 1px solid #87976D;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
 
         .btn {
@@ -55,6 +80,8 @@
         .btn:hover {
             background-color: #4A593D;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(44, 85, 48, 0.1);
         }
 
         .btn-outline {
@@ -70,96 +97,93 @@
             color: white;
         }
 
-        .bg {
-            background-image: url("https://cdn.discordapp.com/attachments/1264213314632945674/1298641092194996315/Cascate-di-Stanghe-iltrentinodeibambini-4.png?ex=671b9ec3&is=671a4d43&hm=67bd9e17688c4cdc6ef84c91da8f975aa5fd1da41b5f00ba7e373e75d40a091c&");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            padding: 80px 0;
+        /* Logout Button */
+        .Btn {
+            background-color: #8B7355;
+            transition: all 0.3s ease;
         }
 
-        .bg > * {
-            position: relative;
-            z-index: 1;
+        .Btn:hover {
+            background-color: #725f46;
         }
 
-        .form-select {
-            border-color:  #D3CBBF;
+        .sign svg path {
+            fill: white;
+        }
+
+        /* Forms */
+        .form-control {
+            border-color: #D3CBBF;
             color: #4A593D;
         }
 
-        .form-select:focus {
+        .form-control:focus {
             border-color: #87976D;
             box-shadow: 0 0 0 0.25rem rgba(135, 151, 109, 0.25);
         }
 
-        .card {
-            background-color: white;
-            border: 1px solid  #D3CBBF;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(139, 115, 85, 0.1);
-        }
-
-        .card-title {
-            color: #2C5530;
-            font-weight: 600;
-        }
-
-        .card-text {
-            color: #4A593D;
-        }
-
-        #chi-siamo {
+        textarea.form-control {
             background-color: white;
         }
 
-        #chi-siamo p {
-            font-size: 20px;
-        }
-
-        #chi-siamo h2 {
-            color: #2C5530;
-            font-weight: 600;
+        footer {
+            background-image: url("https://media.istockphoto.com/id/2061680164/it/foto/nero-marrone-scuro-grigio-pietra-roccia-granito-basalto-texture-sfondo-superficie-delle.jpg?s=1024x1024&w=is&k=20&c=RYMXaZ6RnCpFuAFVZL9N9e_7gUNRup-l122rDATfBnE=");
+            color: #F5F1E9;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
+            padding: 40px 0;
         }
 
         footer h5 {
             color: #F5F1E9;
             font-weight: 600;
+            margin-bottom: 20px;
         }
 
         footer a {
-            color: #F5F1E9 !important;
+            color: #F5F1E9;
             font-size: 18px;
             transition: color 0.3s ease;
         }
 
         footer a:hover {
-            color: white !important;
+            color: white;
         }
 
         footer ul li {
             color: #F5F1E9;
             font-size: 18px;
+            margin-bottom: 10px;
         }
 
         .social-icons a {
             text-decoration: none;
             transition: transform 0.3s ease;
             display: inline-block;
+            color: #F5F1E9;
+            font-size: 24px;
+            margin-left: 15px;
         }
 
         .social-icons a:hover {
             transform: translateY(-3px);
+            color: white;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .search-container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        /* Personalizzazione del pulsante "Choose file" */
+        input[type="file"]::file-selector-button {
+            background-color: #2C5530;
+            color: black;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
+
+        input[type="file"]::file-selector-button:hover {
+        }
+
+
