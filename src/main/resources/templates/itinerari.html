@@ -24,40 +24,35 @@
 <body>
 
 <!-- Navbar -->
-<header class="container-fluid py-3 border-bottom">
+<header class="container-fluid">
     <nav class="navbar navbar-expand-sm navbar-light p-0">
         <div class="container-fluid px-0">
-            <!-- Logo -->
-            <div class="d-flex justify-content-center align-items-center" style="width: 160px; height: 160px;">
-                <img src="https://cdn.discordapp.com/attachments/1298557066683744276/1299304808443940894/logo_no_sfondo_ritaglio.png?ex=671cb766&is=671b65e6&hm=2b999e75f81ce009dbe935dc80a296fdf0c1852e8bab36a9d6461cf9d059b2e1&" alt="logo" class="img-fluid" style="max-height: 100%; width: auto;">
+            <div class="d-flex justify-content-center align-items-center" style="width: 100px; height: 100px;">
+                <img src="https://cdn.discordapp.com/attachments/1298557066683744276/1299304808443940894/logo_no_sfondo_ritaglio.png?ex=671cb766&is=671b65e6&hm=2b999e75f81ce009dbe935dc80a296fdf0c1852e8bab36a9d6461cf9d059b2e1&" alt="logo" class="img-fluid" style="max-height: 80px; width: auto;">
             </div>
 
-            <!-- Hamburger button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Contenuto navbar collassabile -->
-            <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="collapse navbar-collapse " id="navbarContent">
                 <ul class="navbar-nav mx-auto text-center">
-                    <li class="nav-item px-2">
-                        <a class="nav-link" th:href="@{/}">Home</a>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" th:href="@{/}">Home</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" th:href="@{/itinerari}">Itinerari</a>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" th:href="@{/itinerari}">Itinerari</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" th:href="@{/guide}">Guide</a>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" th:href="@{/guide}">Guide</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" th:href="@{/#chi-siamo}">Chi Siamo</a>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" th:href="@{/#chi-siamo}">Chi Siamo</a>
                     </li>
                 </ul>
 
-                <!-- Area Riservata -->
                 <div class="text-center text-sm-end mt-3 mt-sm-0">
-                    <a th:href="@{/itinerari/toareariservata}" class="btn btn-outline-secondary">Area Riservata</a>
+                    <a th:href="@{/toareariservata}" class="btn btn-outline">Area Riservata</a>
                 </div>
             </div>
         </div>
