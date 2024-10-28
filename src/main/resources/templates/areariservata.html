@@ -168,7 +168,7 @@
                        placeholder="Inserisci il tuo numero di telefono" required th:field="*{telefono}">
             </div>
             <div class="mb-3">
-                <label for="personalPhoto" class="form-label">Fotografia Personale</label>
+                <label for="personalPhoto" class="form-label">Fotografia Personale (massimo 1 MB)</label>
                 <input type="file" class="form-control" id="personalPhoto" name="foto" accept="image/*" required th:field="*{foto}">
             </div>
             <button type="submit" class="btn">Invia Richiesta</button>
@@ -216,6 +216,18 @@
             guideSection.style.display = 'block';
         } else {
             guideSection.style.display = 'none';
+        }
+    });
+
+    // check per grandezza della foto del candidato (max 1 mb per codifica)
+    document.getElementById("personalPhoto").addEventListener("change", function() {
+        const file = this.files[0];
+        if (file) {
+            const fileSizeInMB = file.size / (1024 * 1024); // Convertiamo i byte in MB
+            if (fileSizeInMB > 1) {
+                alert("Il file selezionato supera la dimensione massima di 1 MB. Si prega di scegliere un file più piccolo.");
+                this.value = ""; // Resetta il campo input
+            }
         }
     });
 </script>

@@ -2,6 +2,7 @@ package com.example.progetto_escursioni.controller;
 
 import com.example.progetto_escursioni.model.Itinerario;
 import com.example.progetto_escursioni.service.ItinerarioService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ public class IndexController {
 
     @GetMapping
     public String getPage(
+            HttpSession session,
             Model model
     ){
         // creo lista di itinerari per il carosello a fine pagina
@@ -28,7 +30,17 @@ public class IndexController {
         // registro in model per thymeleaf
         model.addAttribute("caroselloItinerari", caroselloItinerari.subList(0,3));
 
+        // registro in sessione la pagina corrente, per eventuali tasti "indietro" o per quando fai il login
+        session.setAttribute("paginaPrecedente", "");
+
         // return pagina
         return "index";
     }
+
+    // per gestire il tasto per l'area riservata
+    @GetMapping("/toareariservata")
+    public String toAreaRiservata(HttpSession session){
+        return "redirect:/areariservata";
+    }
+
 }
