@@ -7,6 +7,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link th:href="@{CSS/style.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
 
         .footer {
@@ -29,6 +31,16 @@
             align-items: center;
             flex-direction: row;
         }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Ingrandisce leggermente la card */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra */
+        }
+
     </style>
 </head>
 <body>
@@ -70,22 +82,32 @@
         </nav>
     </header>
 
-    <!-- Card Section -->
+    <div class="container text-center my-4" style="font-family: 'Poppins', sans-serif;">
+        <h2 style="font-weight: 600;">Le nostre guide esperte</h2>
+        <p class="lead" style="font-weight: 400;">
+            Esplora la nostra selezione di guide esperte, ciascuna con anni di esperienza e una profonda conoscenza del territorio. Scopri di più su di loro e lasciati consigliare dai migliori per vivere un’esperienza indimenticabile nella natura. Ogni guida ha una piccola descrizione personale per aiutarti a scegliere chi potrà accompagnarti nella tua prossima avventura.
+        </p>
+    </div>
+
+
+
     <section class="container py-5">
-        <div class="row mb-4">
-            <!-- Card 1 -->
+        <div class="row gy-4"> <!-- Aggiunta della classe gy-4 per margini verticali -->
             <div class="col-md-6" th:each="guida : ${listaGuide}">
-                <div class="card card-content">
-                    <img th:src="@{${guida.foto == null ? 'markerImage.png' : guida.foto}}" class="card-img-left"
-                         alt="Guida 1">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${guida.nome + ' ' + guida.cognome}">Guida 1</h5>
-                        <p class="card-text" th:text="${guida.descrizione}">Descrizione card guida.</p>
+                <div class="mb-4">
+                    <div class="card card-content">
+                        <img th:src="@{${guida.foto == null ? 'markerImage.png' : guida.foto}}" class="card-img-left"
+                             alt="Guida 1">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${guida.nome + ' ' + guida.cognome}">Guida 1</h5>
+                            <p class="card-text" th:text="${guida.descrizione}">Descrizione card guida.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 </div>
 
 
