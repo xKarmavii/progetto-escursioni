@@ -82,10 +82,35 @@
                 <div class="card">
                     <div class="card-body">
                         <h5>Dettagli</h5>
-                        <p><strong>Difficoltà: </strong><span th:text="${itinerario.difficolta}"></span>
-                            <span class="star-rating">
-                            ★★★★★ <!-- Aggiungi qui la logica per la valutazione -->
-                        </span>
+                        <p><strong>Difficoltà: </strong><span th:text="${itinerario.difficolta}" id="difficolta"></span>
+                            <span class="star-rating" id="starRating"></span>
+                        </p>
+                        <!-- Script per le stelle della difficoltà -->
+                        <script>
+                            // Ottieni il valore della difficoltà dal DOM
+                            const difficolta = document.getElementById('difficolta').innerText;
+                            const starRating = document.getElementById('starRating');
+
+                            // Assegna le stelle in base alla difficoltà
+                            let stars = '';
+
+                            switch (difficolta) {
+                                case 'facile':
+                                    stars = '★';
+                                    break;
+                                case 'media':
+                                    stars = '★★★';
+                                    break;
+                                case 'difficile':
+                                    stars = '★★★★★';
+                                    break;
+                                default:
+                                    stars = 'N/A'; // Valore di default nel caso in cui la difficoltà non corrisponda
+                            }
+
+                            // Aggiorna il contenuto del div delle stelle
+                            starRating.innerHTML = stars;
+                        </script>
                         </p>
                         <p><strong>Lunghezza del percorso: </strong><span th:text="${itinerario.distanza}"></span>
                             chilometri</p>
