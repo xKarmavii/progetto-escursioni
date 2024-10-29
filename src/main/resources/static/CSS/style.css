@@ -6,11 +6,23 @@
             -stone: #D3CBBF;
             -moss: #4A593D;
         */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-wrapper {
+            flex: 1 0 auto; /* Questo fa sì che il wrapper prenda tutto lo spazio disponibile */
+        }
 
         body {
             font-family: 'Arial', sans-serif;
             background-color: #F5F1E9;
             color: #4A593D;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         header {
@@ -19,9 +31,9 @@
         }
 
         .nav-item {
-            font-size: 3vh;
-            padding-left: 3.5vh;
-            padding-right: 3.5vh;
+            font-size: 2.5vh;
+            padding-left: 3.25vh;
+            padding-right: 3.25vh;
         }
 
         .nav-link {
@@ -54,11 +66,6 @@
         .user-info {
             background-color: white;
             border: 0.1vh solid #D3CBBF;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .user-info:hover {
-            box-shadow: 0 0.6vh 1.2vh rgba(0, 0, 0, 0.1);
         }
 
         /* Guide Section */
@@ -95,20 +102,6 @@
             color: white;
         }
 
-        /* Logout Button */
-        .Btn {
-            background-color: #8B7355;
-            transition: all 0.3s ease;
-        }
-
-        .Btn:hover {
-            background-color: #8B7355;
-        }
-
-        .sign svg path {
-            fill: white;
-        }
-
         /* Forms */
         .form-control {
             border-color: #D3CBBF;
@@ -125,6 +118,7 @@
         }
 
         footer {
+            flex-shrink: 0;
             background-image: url("https://media.istockphoto.com/id/2061680164/it/foto/nero-marrone-scuro-grigio-pietra-roccia-granito-basalto-texture-sfondo-superficie-delle.jpg?s=1024x1024&w=is&k=20&c=RYMXaZ6RnCpFuAFVZL9N9e_7gUNRup-l122rDATfBnE=");
             color: #F5F1E9;
             background-repeat: no-repeat;
@@ -172,16 +166,12 @@
 
         /* Personalizzazione del pulsante "Choose file" */
         input[type="file"]::file-selector-button {
-            border: 0.2vh solid #6c5ce7;
-            padding: 0.2vh 0.4vh;
-            border-radius: 0.2vh;
-            background-color: #a29bfe;
-            transition: 1s;
+            color: white;
+            background-color: #2C5530;
         }
 
         input[type="file"]::file-selector-button:hover {
-            background-color: #2C5530;
-            border: 0.2vh solid #00cec9;
+          background-color: #2C5530;
         }
 
         .select:focus {

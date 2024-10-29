@@ -6,7 +6,7 @@
     <title>Dettagli Itinerario</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet"/>
     <link th:href="@{CSS/style.css}" rel="stylesheet">
 
     <style>
@@ -34,102 +34,115 @@
     </style>
 </head>
 <body>
-<!-- Navbar -->
-<header class="container-fluid">
-    <nav class="navbar navbar-expand-sm navbar-light p-0">
-        <div class="container-fluid px-0">
-            <div class="d-flex justify-content-center align-items-center" style="width: 100px; height: 100px;">
-                <img src="logo_no_sfondo_ritaglio.png" alt="logo" class="img-fluid" style="max-height: 80px; width: auto;">
-            </div>
+<div class="page-wrapper">
+    <!-- Navbar -->
+    <header class="container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-light p-0">
+            <div class="container-fluid px-0">
+                <div class="d-flex justify-content-center align-items-center" style="width: 100px; height: 100px;">
+                    <img src="logo_no_sfondo_ritaglio.png" alt="logo" class="img-fluid"
+                         style="max-height: 80px; width: auto;">
+                </div>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse " id="navbarContent">
-                <ul class="navbar-nav mx-auto text-center">
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/itinerari}">Itinerari</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/guide}">Guide</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/#chi-siamo}">Chi Siamo</a>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse " id="navbarContent">
+                    <ul class="navbar-nav mx-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/itinerari}">Itinerari</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/guide}">Guide</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/#chi-siamo}">Chi Siamo</a>
+                        </li>
+                    </ul>
 
-                <div class="text-center text-sm-end mt-3 mt-sm-0">
-                    <a th:href="@{/toareariservata}" class="btn btn-outline">Area Riservata</a>
+                    <div class="text-center text-sm-end mt-3 mt-sm-0">
+                        <a th:href="@{/toareariservata}" class="btn btn-outline">Area Riservata</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 
 
-<!-- Corpo -->
-<div class="container mt-5">
-    <h1 class="text-center mb-5" th:text="${itinerario.nome}">Titolo dell'Itinerario</h1>
+    <!-- Corpo -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-5" th:text="${itinerario.nome}">Titolo dell'Itinerario</h1>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5>Dettagli</h5>
-                    <p><strong>Difficoltà: </strong><span th:text="${itinerario.difficolta}"></span>
-                        <span class="star-rating">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Dettagli</h5>
+                        <p><strong>Difficoltà: </strong><span th:text="${itinerario.difficolta}"></span>
+                            <span class="star-rating">
                             ★★★★★ <!-- Aggiungi qui la logica per la valutazione -->
                         </span>
-                    </p>
-                    <p><strong>Lunghezza del percorso: </strong><span th:text="${itinerario.distanza}"></span> chilometri</p>
-                    <p><strong>Dislivello: </strong><span th:text="${itinerario.dislivello}"></span> metri</p>
-                    <p><strong>Durata media: </strong><span th:with="hours=${T(java.lang.Math).floor(itinerario.durataMedia / 60)}, remainingMinutes=${itinerario.durataMedia % 60}"  th:text="${#numbers.formatDecimal(hours, 0, 'POINT', 0, 'COMMA')} + ' ore e ' + ${remainingMinutes} + ' minuti '"></span></p>
-                    <p><strong>Prezzo: </strong><span th:text="${itinerario.prezzo}"></span> euro</p>
-                    <p><strong>Date disponibili: </strong></p>
-                    <ul>
-                        <li th:each="data : ${dateDisponibili}" th:text="${#temporals.format(data.data, 'dd/MM/yyyy')} + ' - ' + ${data.ora}">11/09/2001 12:00</li>
-                    </ul>
+                        </p>
+                        <p><strong>Lunghezza del percorso: </strong><span th:text="${itinerario.distanza}"></span>
+                            chilometri</p>
+                        <p><strong>Dislivello: </strong><span th:text="${itinerario.dislivello}"></span> metri</p>
+                        <p><strong>Durata media: </strong><span
+                                th:with="hours=${T(java.lang.Math).floor(itinerario.durataMedia / 60)}, remainingMinutes=${itinerario.durataMedia % 60}"
+                                th:text="${#numbers.formatDecimal(hours, 0, 'POINT', 0, 'COMMA')} + ' ore e ' + ${remainingMinutes} + ' minuti '"></span>
+                        </p>
+                        <p><strong>Prezzo: </strong><span th:text="${itinerario.prezzo}"></span> euro</p>
+                        <p><strong>Date disponibili: </strong></p>
+                        <ul>
+                            <li th:each="data : ${dateDisponibili}"
+                                th:text="${#temporals.format(data.data, 'dd/MM/yyyy')} + ' - ' + ${data.ora}">11/09/2001
+                                12:00
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="map-container">
+                    <!-- Includi qui la tua mappa di Google Maps -->
+                    <iframe th:src="${itinerario.mappa}" width="100%" height="300" style="border:0;" allowfullscreen=""
+                            loading="lazy"></iframe>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="map-container">
-                <!-- Includi qui la tua mappa di Google Maps -->
-                <iframe th:src="${itinerario.mappa}" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <p class="text-center mt-4" th:text="${itinerario.descrizione}">Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Adipisci, alias animi assumenda at consequatur cumque dolore incidunt itaque iusto magnam
+            obcaecati porro reiciendis rem repudiandae, similique sint sit sunt temporibus!</p>
+        <div class="image-container mt-4">
+            <h5>Galleria Immagini</h5>
+            <div class="row">
+                <div class="col-md-4" th:each="foto : ${fotoItinerario}">
+                    <!-- Controllo per se l'immagine esiste -->
+                    <a th:if="${foto.foto != null}" th:href="${foto.foto}" data-fancybox="gallery">
+                        <img th:src="${foto.foto}" alt="Foto itinerario" style="width:100%">
+                    </a>
+
+                    <!-- Controllo per immagine di default -->
+                    <a th:if="${foto.foto == null}" th:href="@{/markerImage.png}" data-fancybox="gallery">
+                        <img th:src="@{/markerImage.png}" alt="Foto itinerario" style="width:100%">
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-    <p class="text-center mt-4" th:text="${itinerario.descrizione}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias animi assumenda at consequatur cumque dolore incidunt itaque iusto magnam obcaecati porro reiciendis rem repudiandae, similique sint sit sunt temporibus!</p>
-    <div class="image-container mt-4">
-        <h5>Galleria Immagini</h5>
-        <div class="row">
-            <div class="col-md-4" th:each="foto : ${fotoItinerario}">
-                <!-- Controllo per se l'immagine esiste -->
-                <a th:if="${foto.foto != null}" th:href="${foto.foto}" data-fancybox="gallery">
-                    <img th:src="${foto.foto}" alt="Foto itinerario" style="width:100%">
-                </a>
 
-                <!-- Controllo per immagine di default -->
-                <a th:if="${foto.foto == null}" th:href="@{/markerImage.png}" data-fancybox="gallery">
-                    <img th:src="@{/markerImage.png}" alt="Foto itinerario" style="width:100%">
-                </a>
-            </div>
+
+        <div class="text-center mt-5">
+            <a class="btn btn-primary" th:href="@{/checkout(id=${itinerario.id})}">Prenota Itinerario</a>
         </div>
-    </div>
-
-
-    <div class="text-center mt-5">
-        <a class="btn btn-primary" th:href="@{/checkout(id=${itinerario.id})}">Prenota Itinerario</a>
     </div>
 </div>
 
 <!-- Footer -->
 <footer class="mt-4">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row gy-4">
             <div class="col-12 col-md-6">
                 <h5 class="mb-2">Contatti</h5>
@@ -159,14 +172,13 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet">
 
 <!-- CSS di Fancybox -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.30/dist/fancybox.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.30/dist/fancybox.css"/>
 
 <!-- JS di jQuery (se non è già incluso) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- JS di Fancybox -->
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.30/dist/fancybox.umd.js"></script>
-
 
 
 </body>

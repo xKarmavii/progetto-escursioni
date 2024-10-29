@@ -7,124 +7,118 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link th:href="@{CSS/style.css}" rel="stylesheet">
-    <style>
-        .star {
-            color: gold; /* Colore delle stelle */
-        }
-        .footer {
-            background-color: #f8f9fa;
-            padding: 40px 0;
-        }
-        .social-icons a {
-                margin: 0 10px;
-                color: #000;
-                font-size: 24px;
-            }
-    </style>
 </head>
 <body>
-
-<!-- Navbar -->
-<header class="container-fluid">
-    <nav class="navbar navbar-expand-sm navbar-light p-0">
-        <div class="container-fluid px-0">
-            <div class="d-flex justify-content-center align-items-center" style="width: 100px; height: 100px;">
-                <img src="logo_no_sfondo_ritaglio.png" alt="logo" class="img-fluid" style="max-height: 80px; width: auto;">
-            </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse " id="navbarContent">
-                <ul class="navbar-nav mx-auto text-center">
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/itinerari}">Itinerari</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/guide}">Guide</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/#chi-siamo}">Chi Siamo</a>
-                    </li>
-                </ul>
-
-                <div class="text-center text-sm-end mt-3 mt-sm-0">
-                    <a th:href="@{/toareariservata}" class="btn btn-outline">Area Riservata</a>
+<div class="page-wrapper">
+    <!-- Navbar -->
+    <header class="container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-light p-0">
+            <div class="container-fluid px-0">
+                <div class="d-flex justify-content-center align-items-center" style="width: 100px; height: 100px;">
+                    <img src="logo_no_sfondo_ritaglio.png" alt="logo" class="img-fluid"
+                         style="max-height: 80px; width: auto;">
                 </div>
-            </div>
-        </div>
-    </nav>
-</header>
 
-<!-- Corpo della pagina con margine sopra -->
-<div class="container-fluid mt-4">
-    <div class="row">
-        <!-- Div laterale a sinistra -->
-        <div class="col-md-3">
-            <div class="border ms-3 p-3">
-                <h4>Applica i filtri per ricerca</h4>
-                <form method="post" action="/itinerari">
-                    <div class="mb-3">
-                        <label for="filtro1" class="form-label">Regione</label>
-                        <select class="form-select" id="filtro1" method="post" name="regione">
-                            <option value="tutteregioni">Tutte le regioni</option>
-                            <option value="spazio" disabled>------------------------------</option>
-                            <option value="abruzzo">Abruzzo</option>
-                            <option value="basilicata">Basilicata</option>
-                            <option value="calabria">Calabria</option>
-                            <option value="campania">Campania</option>
-                            <option value="emilia-romagna">Emilia-Romagna</option>
-                            <option value="friuli-venezia-giulia">Friuli Venezia Giulia</option>
-                            <option value="lazio">Lazio</option>
-                            <option value="liguria">Liguria</option>
-                            <option value="lombardia">Lombardia</option>
-                            <option value="marche">Marche</option>
-                            <option value="molise">Molise</option>
-                            <option value="piemonte">Piemonte</option>
-                            <option value="puglia">Puglia</option>
-                            <option value="sardegna">Sardegna</option>
-                            <option value="sicilia">Sicilia</option>
-                            <option value="toscana">Toscana</option>
-                            <option value="trentino-alto-adige">Trentino-Alto Adige</option>
-                            <option value="umbria">Umbria</option>
-                            <option value="valle-d-aosta">Valle d'Aosta</option>
-                            <option value="veneto">Veneto</option>
-                        </select>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse " id="navbarContent">
+                    <ul class="navbar-nav mx-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/itinerari}">Itinerari</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/guide}">Guide</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/#chi-siamo}">Chi Siamo</a>
+                        </li>
+                    </ul>
+
+                    <div class="text-center text-sm-end mt-3 mt-sm-0">
+                        <a th:href="@{/toareariservata}" class="btn btn-outline">Area Riservata</a>
                     </div>
-                    <button type="submit" class="btn btn-primary">Applica Filtri</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Contenuto principale -->
-        <div class="col-md-9">
-            <div class="border p-3">
-                <h4 style="text-align: center">Tutti gli itinerari</h4>
-                <div th:if="${#lists.isEmpty(itinerariVisualizzati)}">
-                    <span>Non ci sono itinerari da visualizzare per questa regione.</span>
                 </div>
-                <!-- Card 1 con margine inferiore -->
-                <div class="card mb-4" th:each="itinerario : ${itinerariVisualizzati}">
-                    <div class="row g-0">
-                        <!-- Parte sinistra con foto -->
-                        <div class="col-md-6">
-                            <img th:src="@{${itinerario.immagine == null ? 'markerImage.png' : itinerario.immagine}}" class="img-fluid rounded-start" alt="Foto">
+            </div>
+        </nav>
+    </header>
+
+    <!-- Corpo della pagina con margine sopra -->
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Div laterale a sinistra -->
+            <div class="col-md-3">
+                <div class="border ms-3 p-3">
+                    <h4>Applica i filtri per ricerca</h4>
+                    <form method="post" action="/itinerari">
+                        <div class="mb-3">
+                            <label for="filtro1" class="form-label">Regione</label>
+                            <select class="form-select" id="filtro1" method="post" name="regione">
+                                <option value="tutteregioni">Tutte le regioni</option>
+                                <option value="spazio" disabled>------------------------------</option>
+                                <option value="abruzzo">Abruzzo</option>
+                                <option value="basilicata">Basilicata</option>
+                                <option value="calabria">Calabria</option>
+                                <option value="campania">Campania</option>
+                                <option value="emilia-romagna">Emilia-Romagna</option>
+                                <option value="friuli-venezia-giulia">Friuli Venezia Giulia</option>
+                                <option value="lazio">Lazio</option>
+                                <option value="liguria">Liguria</option>
+                                <option value="lombardia">Lombardia</option>
+                                <option value="marche">Marche</option>
+                                <option value="molise">Molise</option>
+                                <option value="piemonte">Piemonte</option>
+                                <option value="puglia">Puglia</option>
+                                <option value="sardegna">Sardegna</option>
+                                <option value="sicilia">Sicilia</option>
+                                <option value="toscana">Toscana</option>
+                                <option value="trentino-alto-adige">Trentino-Alto Adige</option>
+                                <option value="umbria">Umbria</option>
+                                <option value="valle-d-aosta">Valle d'Aosta</option>
+                                <option value="veneto">Veneto</option>
+                            </select>
                         </div>
-                        <!-- Parte destra con descrizione -->
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${itinerario.nome}">Titolo della Card</h5>
-                                <p class="card-text" th:text="${itinerario.descrizione}">Questa è una descrizione dell'elemento, dove puoi aggiungere dettagli interessanti. La descrizione può contenere informazioni sull'elemento, servizi o qualsiasi altro contenuto rilevante.</p>
-                                <p class="card-text"><small class="text-muted">Ultimo aggiornamento 3 minuti fa</small></p>
-                                <div class="d-flex align-items-center">
-                                    <span class="ml-2" th:text="'Difficoltà: ' + ${itinerario.difficolta}">Difficoltà: 5/5</span>
+                        <button type="submit" class="btn btn-primary">Applica Filtri</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Contenuto principale -->
+            <div class="col-md-9">
+                <div class="border p-3">
+                    <h4 style="text-align: center">Tutti gli itinerari</h4>
+                    <div th:if="${#lists.isEmpty(itinerariVisualizzati)}" class="text-center">
+                        <span >Non ci sono itinerari da visualizzare per questa regione.</span>
+                    </div>
+                    <!-- Card 1 con margine inferiore -->
+                    <div class="card mb-4" th:each="itinerario : ${itinerariVisualizzati}">
+                        <div class="row g-0">
+                            <!-- Parte sinistra con foto -->
+                            <div class="col-md-6">
+                                <img th:src="@{${itinerario.immagine == null ? 'markerImage.png' : itinerario.immagine}}"
+                                     class="img-fluid rounded-start" alt="Foto">
+                            </div>
+                            <!-- Parte destra con descrizione -->
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${itinerario.nome}">Titolo della Card</h5>
+                                    <p class="card-text" th:text="${itinerario.descrizione}">Questa è una descrizione
+                                        dell'elemento, dove puoi aggiungere dettagli interessanti. La descrizione può
+                                        contenere informazioni sull'elemento, servizi o qualsiasi altro contenuto
+                                        rilevante.</p>
+                                    <p class="card-text"><small class="text-muted">Ultimo aggiornamento 3 minuti
+                                        fa</small></p>
+                                    <div class="d-flex align-items-center">
+                                        <span class="ml-2" th:text="'Difficoltà: ' + ${itinerario.difficolta}">Difficoltà: 5/5</span>
+                                    </div>
+                                    <!-- Pulsante per dettagli -->
+                                    <a th:href="@{/dettaglio(id=${itinerario.id})}" class="btn btn-primary mt-4">Scopri
+                                        di più</a>
                                 </div>
-                                <!-- Pulsante per dettagli -->
-                                <a th:href="@{/dettaglio(id=${itinerario.id})}" class="btn btn-primary mt-4">Scopri di più</a>
                             </div>
                         </div>
                     </div>
@@ -136,7 +130,7 @@
 
 <!-- Footer -->
 <footer class="mt-4">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row gy-4">
             <div class="col-12 col-md-6">
                 <h5 class="mb-2">Contatti</h5>
