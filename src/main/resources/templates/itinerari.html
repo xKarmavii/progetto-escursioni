@@ -104,7 +104,9 @@
         <div class="col-md-9">
             <div class="border p-3">
                 <h4 style="text-align: center">Tutti gli itinerari</h4>
-
+                <div th:if="${#lists.isEmpty(itinerariVisualizzati)}">
+                    <span>Non ci sono itinerari da visualizzare per questa regione.</span>
+                </div>
                 <!-- Card 1 con margine inferiore -->
                 <div class="card mb-4" th:each="itinerario : ${itinerariVisualizzati}">
                     <div class="row g-0">
