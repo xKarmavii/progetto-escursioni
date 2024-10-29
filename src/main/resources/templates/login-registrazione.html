@@ -11,7 +11,7 @@
     <style>
         .form-container {
            width: 420px;
-           background: transparent;
+           background: trasparent;
            padding: 20px;
            border-radius: 10px;
            padding: 30px 40px;
@@ -21,15 +21,21 @@
            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
        }
        .btn-custom {
-           background-color: red; /* Colore verde personalizzato */
-           border: none;
-           color: white;
+            border: 2px solid white;
+            border-radius: 25%;
+            padding: 2px 4px;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
        }
-       .btn-custom:hover {
-        background-color: red; /* Colore verde più scuro per hover */
-       }
+
+        .btn-custom:hover {
+            transform: translateY(-0.2rem);
+            box-shadow: 0 0.4rem 0.8rem rgba(44, 85, 48, 0.1);
+        }
+
        body {
-           background-image: url("sfondoLogin.jpg");
+           background-image: url("immagine-login.jpg");
+           background-size: cover;
        }
     </style>
 </head>
@@ -40,7 +46,7 @@
     <!-- Form di Login -->
     <div class="form-container mx-auto" id="login-form">
         <div>
-            <a th:href="@{/checkout/indietro}" class="btn btn-custom">
+            <a th:href="@{/checkout/indietro}" class="btn-custom">
                 <i class="bi bi-arrow-left"></i> <!-- Icona freccia -->
             </a>
         </div>

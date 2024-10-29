@@ -31,7 +31,7 @@
         }
 
         .nav-item {
-            font-size: 2.5vh;
+            font-size: 2vh;
             padding-left: 3.25vh;
             padding-right: 3.25vh;
         }
@@ -49,7 +49,7 @@
         }
 
         .bg {
-            background-image: url("/Cascate-di-Stanghe.png");
+            background-image: url("/mountains.jpg");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -119,11 +119,11 @@
 
         footer {
             flex-shrink: 0;
-            background-image: url("https://media.istockphoto.com/id/2061680164/it/foto/nero-marrone-scuro-grigio-pietra-roccia-granito-basalto-texture-sfondo-superficie-delle.jpg?s=1024x1024&w=is&k=20&c=RYMXaZ6RnCpFuAFVZL9N9e_7gUNRup-l122rDATfBnE=");
+            background-image: url("/mountains.jpg");
             color: #F5F1E9;
             background-repeat: no-repeat;
             background-size: cover;
-            background-position: top;
+            background-position: bottom;
             padding: 4vh 0;
         }
 
