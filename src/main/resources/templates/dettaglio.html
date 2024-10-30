@@ -78,7 +78,7 @@
                     </ul>
 
                     <div class="text-center text-sm-end mt-3 mt-sm-0">
-                        <a th:href="@{/toareariservata}" class="btn btn-outline">Area Riservata</a>
+                        <a th:href="@{/toareariservata}" class="btn btn-outline" th:text="${utenteLogged ? 'Il tuo profilo' : 'Accedi'}">Area Riservata</a>
                     </div>
                 </div>
             </div>
@@ -137,7 +137,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <a class="btn btn-primary" th:href="@{/checkout(id=${itinerario.id})}">Prenota Itinerario</a>
+            <a class="btn btn-primary" th:href="@{/checkout(id=${itinerario.id})}" id="tastoPrenotaItinerario">Prenota Itinerario</a>
         </div>
         <hr>
         <div class="image-container mt-4">
@@ -216,7 +216,8 @@
     // Aggiorna il contenuto dell'elemento star-rating con il numero di stelle corretto
     starRatingElement.textContent = stars;
 </script>
-
-
+<script th:if="${prenotazioneBloccata}">
+    document.getElementById("tastoPrenotaItinerario").disabled = true;
+</script>
 </body>
 </html>

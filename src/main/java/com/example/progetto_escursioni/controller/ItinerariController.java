@@ -39,11 +39,15 @@ public class ItinerariController {
         // registro in sessione la pagina corrente, per eventuali tasti "indietro" o per quando fai il login
         session.setAttribute("paginaPrecedente", "itinerari");
 
+        // recupero utente in sessione se presente e registro sul model questa cosa per poter cambiare scritta di tasto area riservata
+        model.addAttribute("utenteLogged", session.getAttribute("utente") != null); // (session.getAttribute("utente") != null ? true : false)
+
         return "itinerari";
     }
 
     @PostMapping
     public String filtraRisultati(
+            HttpSession session,
             Model model,
             @RequestParam("regione") String regione,
             @RequestParam(name = "difficolta", required = false) String difficolta,
@@ -62,6 +66,9 @@ public class ItinerariController {
 
         listaTuttiItinerari = itinerarioService.elencoItinerari();
         model.addAttribute("listaTuttiItinerari", listaTuttiItinerari);
+
+        // recupero utente in sessione se presente e registro sul model questa cosa per poter cambiare scritta di tasto area riservata
+        model.addAttribute("utenteLogged", session.getAttribute("utente") != null); // (session.getAttribute("utente") != null ? true : false)
 
         return "itinerari";
     }
