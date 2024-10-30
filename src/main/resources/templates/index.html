@@ -104,8 +104,10 @@
                          alt="Immagine itinerario">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title" th:text="${itinerario.nome}">Itinerario 1</h5>
-                        <p class="card-text" th:text="${itinerario.descrizione}">
-                            Descrizione breve del Percorso 1. Scopri i paesaggi mozzafiato e i sentieri avventurosi.
+
+                        <!-- Versione breve del testo (sempre visibile) -->
+                        <p class="card-text" th:text="${#strings.length(itinerario.descrizione) > 500 ? #strings.substring(itinerario.descrizione,0,500) + '...' : itinerario.descrizione}">
+                            Descrizione breve...
                         </p>
                         <a th:href="@{/dettaglio(id=${itinerario.id})}" class="btn mt-auto">Scopri di più</a>
                     </div>

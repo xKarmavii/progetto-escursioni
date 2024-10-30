@@ -136,12 +136,9 @@
                             <div class="col-md-6">
                                 <div class="card-body">
                                     <h5 class="card-title" th:text="${itinerario.nome}">Titolo della Card</h5>
-                                    <p class="card-text" th:text="${itinerario.descrizione}">Questa è una descrizione
-                                        dell'elemento, dove puoi aggiungere dettagli interessanti. La descrizione può
-                                        contenere informazioni sull'elemento, servizi o qualsiasi altro contenuto
-                                        rilevante.</p>
-                                    <p class="card-text"><small class="text-muted">Ultimo aggiornamento 3 minuti
-                                        fa</small></p>
+                                    <p class="card-text" th:text="${#strings.length(itinerario.descrizione) > 500 ? #strings.substring(itinerario.descrizione,0,500) + '...' : itinerario.descrizione}">
+                                        Descrizione breve...
+                                    </p>
                                     <div class="d-flex align-items-center">
                                         <span class="ml-2" th:text="'Difficoltà: ' + ${itinerario.difficolta}">Difficoltà: 5/5</span>
                                     </div>
