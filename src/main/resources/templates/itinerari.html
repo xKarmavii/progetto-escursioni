@@ -140,7 +140,7 @@
                                         Descrizione breve...
                                     </p>
                                     <div class="d-flex align-items-center">
-                                        <span class="ml-2" th:text="'Difficoltà: ' + ${itinerario.difficolta}">Difficoltà: 5/5</span>
+                                        <span class="ml-2" th:text="'Difficoltà: ' + ${#strings.capitalize(itinerario.difficolta)}">Difficoltà: 5/5</span>
                                     </div>
                                     <!-- Pulsante per dettagli -->
                                     <a th:href="@{/dettaglio(id=${itinerario.id})}" class="btn btn-primary mt-4">Scopri
