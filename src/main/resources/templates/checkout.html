@@ -23,12 +23,16 @@
     </style>
 </head>
 <body>
-<div class="container my-5">
-    <a th:href="@{/checkout/indietro}" class="btn btn-custom">
-        <i class="bi bi-arrow-left"></i> <!-- Icona freccia -->
-    </a>
+<div class="container mb-5 mt-3">
+    <div class="d-flex justify-content-between align-items-center ">
+        <!-- Bottone Indietro -->
+        <a th:href="@{/checkout/indietro}" class="btn btn-custom mb-2">
+            <i class="bi bi-arrow-left"></i> <!-- Icona freccia -->
+        </a>
 
-<h2 class="text-center mb-4">Checkout</h2>
+        <!-- Titolo Checkout -->
+        <h2 class="text-center flex-grow-1 fw-bold">Checkout</h2>
+    </div>
 
 <form id="checkoutForm" method="post" action="/checkout/invia">
     <!-- Sezione Dettagli Cliente -->
@@ -105,11 +109,11 @@
             <ul class="list-group mb-3">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <input type="hidden" id="idItinerario" th:value="${itinerario.id}" name="idItinerario">
-                    <span class="align-middle" th:text="${itinerario.nome}">Placeholder:</span>
+                    <span class="align-middle"><strong>Itinerario: </strong><span class="align-middle" th:text="${itinerario.nome}"></span></span>
                     <div class="d-flex align-items-center">
                         <label for="totale" class="form-label me-2 mb-0 align-middle"><strong>Totale:</strong></label>
                         <input type="text" class="form-control text-center" id="totale" required readonly value="€0.00"
-                               style="width: 100px; text-align: right;" form="checkoutForm" name="totale">
+                               style="width: 100px; text-align: right; color:black;" form="checkoutForm" name="totale">
                     </div>
                 </li>
             </ul>

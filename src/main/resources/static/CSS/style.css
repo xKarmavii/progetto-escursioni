@@ -18,7 +18,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #F5F1E9;
+            background-color: #2C5530;
             color: #4A593D;
             min-height: 100vh;
             display: flex;
@@ -31,7 +31,7 @@
         }
 
         .nav-item {
-            font-size: 2vh;
+            font-size: 2 rem;
             padding-left: 3.25vh;
             padding-right: 3.25vh;
         }
@@ -119,11 +119,11 @@
 
         footer {
             flex-shrink: 0;
-            background-image: url("/mountains.jpg");
+            background-image: url("/footer.jpg");
             color: #F5F1E9;
             background-repeat: no-repeat;
             background-size: cover;
-            background-position: bottom;
+            background-position: left bottom;
             padding: 4vh 0;
         }
 
