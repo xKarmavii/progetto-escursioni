@@ -112,7 +112,7 @@
                         <p><strong>Prezzo per partecipante: </strong><span
                                 th:text="${#numbers.formatDecimal(itinerario.prezzo, 0, 'POINT', 2, 'COMMA') + '€'}"></span>
                         </p>
-                        <p><strong>Date disponibili: </strong></p>
+                        <p><strong>Date disponibili: </strong><span th:if="${#lists.isEmpty(dateDisponibili)}" th:text="'Nessuna data disponibile'"></span></p>
                         <ul>
                             <li th:each="data : ${dateDisponibili}"
                                 th:text="${#temporals.format(data.data, 'dd/MM/yyyy')} + ' - ' + ${data.ora}">11/09/2001
