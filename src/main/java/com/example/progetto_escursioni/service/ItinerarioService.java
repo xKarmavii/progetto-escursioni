@@ -9,4 +9,8 @@ public interface ItinerarioService {
     List<Itinerario> elencoItinerari();
     Itinerario dettaglioItinerario(int idItinerario);
     List<Itinerario> elencoItinerariRegione(String regione);
+
+    // metodi per filtri
+    List<Itinerario> filtraPerRegioneDifficoltaOrdinaPer(String regioneSelezionata, String difficolta, String ordinaPerSelezionato);
+    List<Itinerario> filtraPerDifficoltaOrdinaPer(String difficolta, String ordinaPerSelezionato);
 }

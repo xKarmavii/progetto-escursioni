@@ -80,15 +80,15 @@
             <div class="card">
                 <div class="card-body">
                     <h5>Dettagli</h5>
-                    <p><strong>Difficoltà: </strong><span th:text="${itinerario.difficolta}"></span>
+                    <p><strong>Difficoltà: </strong><span th:text="${#strings.capitalize(itinerario.difficolta)}"></span>
                         <span class="star-rating">
                             ★★★★★ <!-- Aggiungi qui la logica per la valutazione -->
                         </span>
                     </p>
-                    <p><strong>Lunghezza del percorso: </strong><span th:text="${itinerario.distanza}"></span> chilometri</p>
-                    <p><strong>Dislivello: </strong><span th:text="${itinerario.dislivello}"></span> metri</p>
-                    <p><strong>Durata media: </strong><span th:with="hours=${T(java.lang.Math).floor(itinerario.durataMedia / 60)}, remainingMinutes=${itinerario.durataMedia % 60}"  th:text="${#numbers.formatDecimal(hours, 0, 'POINT', 0, 'COMMA')} + ' ore e ' + ${remainingMinutes} + ' minuti '"></span></p>
-                    <p><strong>Prezzo: </strong><span th:text="${itinerario.prezzo}"></span> euro</p>
+                    <p><strong>Lunghezza del percorso: </strong><span th:text="${itinerario.distanza + ' metri'}"></span></p>
+                    <p><strong>Dislivello: </strong><span th:text="${itinerario.dislivello + ' metri'}"></span></p>
+                    <p><strong>Durata media: </strong><span th:with="hours=${T(java.lang.Math).floor(itinerario.durataMedia / 60)}, remainingMinutes=${itinerario.durataMedia % 60}"  th:text="${hours != 0 ? #numbers.formatDecimal(hours, 0, 'POINT', 0, 'COMMA') + 'h ' : ''} + ${remainingMinutes !=0 ? remainingMinutes + 'm' : ''}"></span></p>
+                    <p><strong>Prezzo per partecipante: </strong><span th:text="${#numbers.formatDecimal(itinerario.prezzo, 0, 'POINT', 2, 'COMMA') + '€'}"></span></p>
                     <p><strong>Date disponibili: </strong></p>
                     <ul>
                         <li th:each="data : ${dateDisponibili}" th:text="${#temporals.format(data.data, 'dd/MM/yyyy')} + ' - ' + ${data.ora}">11/09/2001 12:00</li>

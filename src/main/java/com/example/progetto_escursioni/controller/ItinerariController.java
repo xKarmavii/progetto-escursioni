@@ -37,16 +37,21 @@ public class ItinerariController {
     }
 
     @PostMapping
-    public String formManager(
+    public String filtraRisultati(
             Model model,
-            @RequestParam("regione") String regione
+            @RequestParam("regione") String regione,
+            @RequestParam(name = "difficolta", required = false) String difficolta,
+            @RequestParam(name = "ordinaPer", required = false) String ordinaPer,
+            @RequestParam(name = "fromHome", required = false) String fromHome
     ){
-        // recupera una lista di tutti gli itinerari o degli itinerari presenti in una specifica regione, a seconda del value della option del select (recuperato nella String regione)
-        if(regione.equals("tutteregioni")){
-            itinerariVisualizzati = itinerarioService.elencoItinerari();
+
+        if(regione.equals("tutte-regioni")){
+            itinerariVisualizzati = (fromHome == null) ? itinerarioService.filtraPerDifficoltaOrdinaPer(difficolta, ordinaPer) : itinerarioService.elencoItinerari(); // se l'utente viene dalla home vuol dire che ha usato il select lì presente, che presenta solo un filtro per regione
         } else {
-            itinerariVisualizzati = itinerarioService.elencoItinerariRegione(regione);
+            itinerariVisualizzati = (fromHome == null) ? itinerarioService.filtraPerRegioneDifficoltaOrdinaPer(regione, difficolta, ordinaPer) : itinerarioService.elencoItinerariRegione(regione);
         }
+
+        // registro nel model per thymeleaf
         model.addAttribute("itinerariVisualizzati", itinerariVisualizzati);
 
         return "itinerari";

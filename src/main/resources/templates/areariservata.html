@@ -230,7 +230,7 @@
                     <div class="booking-detail">
                         <p><strong>Guida assegnata:</strong> <span th:text="${prenotazione.itinerario.guida.nome} + ' ' + ${prenotazione.itinerario.guida.cognome}">Mario Rossi</span></p>
                         <p><strong>Data di prenotazione:</strong> <span th:text="${#temporals.format(prenotazione.dataPrenotazione, 'dd/MM/yyyy HH:mm')}"></span></p>
-                        <p><strong>Prezzo Totale:</strong> <span th:text="${prenotazione.prezzoTotale + '€'}">50€</span></p>
+                        <p><strong>Prezzo Totale:</strong> <span th:text="${#numbers.formatDecimal(prenotazione.prezzoTotale, 0, 'POINT', 2, 'COMMA') + '€'}">50€</span></p>
                     </div>
                 </div>
             </div>

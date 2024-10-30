@@ -69,10 +69,10 @@
                 <h4>Applica i filtri per ricerca</h4>
                 <form method="post" action="/itinerari">
                     <div class="mb-3">
-                        <label for="filtro1" class="form-label">Regione</label>
-                        <select class="form-select" id="filtro1" method="post" name="regione">
-                            <option value="tutteregioni">Tutte le regioni</option>
-                            <option value="spazio" disabled>------------------------------</option>
+                        <label for="regione" class="form-label">Regione</label>
+                        <select class="form-select" id="regione" name="regione">
+                            <option value="tutte-regioni" selected>Tutte le regioni</option>
+                            <option value="" disabled>------------------------------</option>
                             <option value="abruzzo">Abruzzo</option>
                             <option value="basilicata">Basilicata</option>
                             <option value="calabria">Calabria</option>
@@ -95,9 +95,40 @@
                             <option value="veneto">Veneto</option>
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <fieldset>
+                            <legend style="font-size:medium;">Difficoltà</legend>
+                            <label for="facile" class="form-label">Facile</label>
+                            <input type="checkbox" value="facile" id="facile" name="difficolta" checked></input>
+                            <label for="media" class="form-label">Media</label>
+                            <input type="checkbox" value="media" id="media" name="difficolta" checked></input>
+                            <label for="difficile" class="form-label">Difficile</label>
+                            <input type="checkbox" value="difficile" id="difficile" name="difficolta" checked></input>
+                        </fieldset>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ordinaPer" class="form-label">Ordina per:</label>
+                        <select class="form-select" id="ordinaPer" name="ordinaPer">
+                            <option value="prezzo" selected>Prezzo</option>
+                            <option value="durata_media">Durata media</option>
+                            <option value="distanza">Distanza</option>
+                            <option value="dislivello">Dislivello</option>
+                        </select>
+                    </div>
+                    <br/>
                     <button type="submit" class="btn btn-primary">Applica Filtri</button>
                 </form>
             </div>
+<!--            <div class="border ms-3 p-3">-->
+<!--                <h4>Applica i filtri per ricerca</h4>-->
+<!--                <form method="post" action="/itinerari">-->
+<!--                    <div class="mb-3">-->
+<!--                        <label for="ricercaItinerario" class="form-label">Regione</label>-->
+<!--                        <input type="search" class="form-control" placeholder="Cerca itinerario..." id="ricercaItinerario" name="ricercaItinerario">-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
         </div>
 
         <!-- Contenuto principale -->
@@ -105,7 +136,7 @@
             <div class="border p-3">
                 <h4 style="text-align: center">Tutti gli itinerari</h4>
                 <div th:if="${#lists.isEmpty(itinerariVisualizzati)}">
-                    <span>Non ci sono itinerari da visualizzare per questa regione.</span>
+                    <p>Non ci sono itinerari da visualizzare per i filtri selezionati.</p>
                 </div>
                 <!-- Card 1 con margine inferiore -->
                 <div class="card mb-4" th:each="itinerario : ${itinerariVisualizzati}">

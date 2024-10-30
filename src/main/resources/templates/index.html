@@ -49,10 +49,10 @@
     <div class="row gx-0 justify-content-center align-items-center" style="min-height: 400px;">
         <div class="col-12 col-md-6">
             <div class="search-container">
-                <form action="/itinerari" method="post" class="d-flex gap-3">
-                    <select class="select form-select" aria-label="Seleziona Regione" name="regione">
-                        <option selected disabled>Seleziona una regione...</option>
-                        <option value="tutteregioni">Tutte le regioni</option>
+                <form action="/itinerari?fromHome" method="post" class="d-flex gap-3">
+                    <select class="select form-select" aria-label="Seleziona Regione" name="regione" required>
+                        <option selected disabled value="">Seleziona una regione...</option>
+                        <option value="tutte-regioni">Tutte le regioni</option>
                         <option value="abruzzo">Abruzzo</option>
                         <option value="basilicata">Basilicata</option>
                         <option value="calabria">Calabria</option>

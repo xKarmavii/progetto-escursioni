@@ -57,7 +57,7 @@ public class Itinerario {
             (
                     mappedBy = "itinerario",
                     cascade = CascadeType.REMOVE,
-                    fetch = FetchType.EAGER,
+                    fetch = FetchType.LAZY,
                     orphanRemoval = true
             )
     private List<DataDisponibile> dateDisponibiliItinerario = new ArrayList<>();

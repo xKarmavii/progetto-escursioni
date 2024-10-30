@@ -67,11 +67,11 @@ public class CheckoutController {
         Itinerario itinerario = itinerarioService.dettaglioItinerario(idItinerario);
 
         // per formattare il prezzo
-        DecimalFormat format = new DecimalFormat("#.##");
+        DecimalFormat format = new DecimalFormat("0.00");
         format.setRoundingMode((RoundingMode.HALF_EVEN));
 
         // ritorno una stringa con la struttura (€ + prezzo * numero di partecipanti); la parte numerica di prezzo è opportunamente formattata con format()
-        return "€" + format.format((itinerario.getPrezzo()*partecipanti));
+        return format.format((itinerario.getPrezzo()*partecipanti)) + "€";
     }
 
     // gestisce l'invio della prenotazione (submit)
