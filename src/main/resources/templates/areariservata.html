@@ -169,7 +169,7 @@
             <p><strong>Username:</strong> <span th:text="${utente.username}"></span></p>
 
             <div class="button-container">
-                <button class="btn btn-primary" id="toggle-guide-btn">Iscriviti come guida</button>
+                <button class="btn btn-primary" id="toggle-guide-btn" th:text="${candidaturaBloccata == 'true' ? 'Candidatura già inviata' : 'Iscriviti come guida'}">Iscriviti come guida</button>
                 <button class="btn btn-info" id="toggle-bookings-btn">Le mie prenotazioni</button>
             </div>
 
@@ -305,6 +305,9 @@
             }
         }
     });
+</script>
+<script th:if="${candidaturaBloccata == true}">
+    document.getElementById("toggle-guide-btn").disabled = true;
 </script>
 </body>
 </html>

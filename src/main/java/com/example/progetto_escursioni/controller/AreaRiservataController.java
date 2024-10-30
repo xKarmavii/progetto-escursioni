@@ -34,6 +34,7 @@ public class AreaRiservataController {
                           @ModelAttribute("utente") Utente utente,
                           @RequestParam(name = "candidatura", required = false) String successoCandidatura) {
 
+        // check per vedere se c'è un utente in sessione, altrimenti fa redirect a loginregistrazione
         if (session.getAttribute("utente") != null) {
             utente = (Utente) session.getAttribute("utente");
             model.addAttribute("utente", utente);
@@ -47,6 +48,11 @@ public class AreaRiservataController {
                 model.addAttribute("messaggio", "Candidatura inviata con successo!");
             } else if (successoCandidatura != null && successoCandidatura.equals("false")){
                 model.addAttribute("messaggio", "Non puoi inviare un'altra candidatura!");
+            }
+
+            // se c'è una candidatura associata all'utente registro nel model una stringa per far comparire lo script per disabilitare il tasto di candidatura
+            if(!candidatoService.controlloCandidato(utente.getId())) {
+                model.addAttribute("candidaturaBloccata", "true");
             }
 
             return "areariservata";
@@ -64,8 +70,7 @@ public class AreaRiservataController {
 
     @PostMapping("/candidati")
     public String candidatiManager(@ModelAttribute("candidato") Candidato candidato,
-                                   HttpSession session,
-                                   Model model) {
+                                   HttpSession session) {
         Utente utente = (Utente) session.getAttribute("utente");
 
         if (candidatoService.controlloCandidato(utente.getId())) {
