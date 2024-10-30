@@ -121,130 +121,131 @@
     </style>
 </head>
 <body>
-
-<!-- Header con logo e menu -->
-<header class="container-fluid">
-    <nav class="navbar navbar-expand-sm navbar-light p-0">
-        <div class="container-fluid px-0">
-            <div class="d-flex justify-content-center align-items-center" style="width: 100px; height: 100px;">
-                <img src="logo_no_sfondo_ritaglio.png" alt="logo" class="img-fluid" style="max-height: 80px; width: auto;">
-            </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse " id="navbarContent">
-                <ul class="navbar-nav mx-auto text-center">
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/itinerari}">Itinerari</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/guide}">Guide</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" th:href="@{/#chi-siamo}">Chi Siamo</a>
-                    </li>
-                </ul>
-
-                <div class="text-center text-sm-end mt-3 mt-sm-0">
-                    <a th:href="@{/toareariservata}" class="btn btn-outline">Area Riservata</a>
+<div class="page-wrapper">
+    <!-- Header con logo e menu -->
+    <header class="container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-light p-0">
+            <div class="container-fluid px-0">
+                <div class="d-flex justify-content-center align-items-center" style="width: 100px; height: 100px;">
+                    <img src="logo_no_sfondo_ritaglio.png" alt="logo" class="img-fluid"
+                         style="max-height: 80px; width: auto;">
                 </div>
-            </div>
-        </div>
-    </nav>
-</header>
 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-<!-- Sezione informazioni utente -->
-<section class="container py-5">
-    <div class="user-info" style="position: relative;">
-        <h2>Informazioni Utente</h2>
-        <p><strong>Nome:</strong> <span th:text="${utente.nome}"></span></p>
-        <p><strong>Cognome:</strong> <span th:text="${utente.cognome}"></span></p>
-        <p><strong>Data di Nascita:</strong> <span th:text="${utente.dataNascita}"></span></p>
-        <p><strong>Email:</strong> <span th:text="${utente.email}"></span></p>
-        <p><strong>Username:</strong> <span th:text="${utente.username}"></span></p>
-
-        <div class="button-container">
-            <button class="btn btn-primary" id="toggle-guide-btn">Iscriviti come guida</button>
-            <button class="btn btn-info" id="toggle-bookings-btn">Le mie prenotazioni</button>
-        </div>
-
-        <p th:if="${messaggio != null}" th:text="${messaggio}" th:style="${messaggio == 'Candidatura inviata con successo!' ? 'color:green; font-weight: bold; text-align: center;' : 'color:red; font-weight: bold; text-align: center;'}"></p>
-
-        <!-- Fixed Logout Button -->
-        <a th:href="@{/areariservata/logout}" class="Btn" style="position: absolute; top: 20px; right: 20px;">
-            <div class="sign">
-                <svg viewBox="0 0 512 512">
-                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
-                </svg>
-            </div>
-            <div class="text">Logout</div>
-        </a>
-    </div>
-
-    <!-- Sezione guida -->
-    <div id="guide-section" class="guide-section">
-        <h3>Iscrizione al Ruolo di Guida</h3>
-        <p>Compila il modulo per iscriverti come guida.</p>
-        <form action="/areariservata/candidati" method="post" enctype="multipart/form-data" th:object="${candidato}">
-            <div class="mb-3">
-                <label for="shortDescription" class="form-label">Breve descrizione di sé</label>
-                <textarea class="form-control" id="shortDescription" name="descrizione" rows="3"
-                          placeholder="Scrivi una breve descrizione di te" required th:field="*{descrizione}"></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="phoneNumber" class="form-label">Recapito Telefonico</label>
-                <input type="tel" class="form-control" id="phoneNumber" name="telefono"
-                       placeholder="Inserisci il tuo numero di telefono" required th:field="*{telefono}">
-            </div>
-            <div class="mb-3">
-                <label for="personalPhoto" class="form-label">Fotografia Personale (massimo 1 MB)</label>
-                <input type="file" class="form-control" id="personalPhoto" name="foto" accept="image/*" required th:field="*{foto}">
-            </div>
-            <button type="submit" class="btn btn-primary">Invia Richiesta</button>
-        </form>
-    </div>
-
-    <!-- Sezione prenotazioni -->
-    <div id="bookings-section" class="bookings-section">
-        <h3>Le Mie Prenotazioni</h3>
-        <div class="bookings-container">
-            <div class="booking-card" th:each="prenotazione : ${prenotazioni}">
-                <h5 th:text="${prenotazione.itinerario.nome}">Nome Itinerario</h5>
-                <div class="booking-info">
-                    <div class="booking-detail">
-                        <p><strong>Nominativo:</strong> <span th:text="${prenotazione.nomeCompleto}">Luca Rizzolo</span></p>
-                        <p><strong>Email:</strong> <span th:text="${prenotazione.email}"></span></p>
-                        <p><strong>Telefono:</strong> <span th:text="${prenotazione.telefono}"></span></p>
-                    </div>
-                    <div class="booking-detail">
-                        <p><strong>Data dell'escursione:</strong> <span th:text="${#temporals.format(prenotazione.dataEscursione, 'dd/MM/yyyy')}">01/01/2024</span></p>
-                        <p><strong>Ora di partenza:</strong> <span th:text="${prenotazione.oraEscursione}">10:00</span></p>
-                        <p><strong>Numero Partecipanti:</strong> <span th:text="${prenotazione.numeroPartecipanti}">2</span></p>
-                    </div>
-                    <div class="booking-detail">
-                        <p><strong>Guida assegnata:</strong> <span th:text="${prenotazione.itinerario.guida.nome} + ' ' + ${prenotazione.itinerario.guida.cognome}">Mario Rossi</span></p>
-                        <p><strong>Data di prenotazione:</strong> <span th:text="${#temporals.format(prenotazione.dataPrenotazione, 'dd/MM/yyyy HH:mm')}"></span></p>
-                        <p><strong>Prezzo Totale:</strong> <span th:text="${#numbers.formatDecimal(prenotazione.prezzoTotale, 0, 'POINT', 2, 'COMMA') + '€'}">50€</span></p>
+                <div class="collapse navbar-collapse " id="navbarContent">
+                    <ul class="navbar-nav mx-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/itinerari}">Itinerari</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/guide}">Guide</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" th:href="@{/#chi-siamo}">Chi Siamo</a>
+                        </li>
+                    </ul>
+                    <div class="text-center text-sm-end mt-3 mt-sm-0">
+                        <a th:href="@{/toareariservata}" class="btn btn-outline">Area Riservata</a>
                     </div>
                 </div>
             </div>
-            <!-- Se non ci sono prenotazioni -->
-            <div th:if="${#lists.isEmpty(prenotazioni)}" class="alert alert-info">
-                Non hai ancora effettuato nessuna prenotazione.
+        </nav>
+    </header>
+
+    <!-- Sezione informazioni utente -->
+    <section class="container py-5">
+        <div class="user-info" style="position: relative;">
+            <h2>Informazioni Utente</h2>
+            <p><strong>Nome:</strong> <span th:text="${utente.nome}"></span></p>
+            <p><strong>Cognome:</strong> <span th:text="${utente.cognome}"></span></p>
+            <p><strong>Data di Nascita:</strong> <span th:text="${utente.dataNascita}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${utente.email}"></span></p>
+            <p><strong>Username:</strong> <span th:text="${utente.username}"></span></p>
+
+            <div class="button-container">
+                <button class="btn btn-primary" id="toggle-guide-btn">Iscriviti come guida</button>
+                <button class="btn btn-info" id="toggle-bookings-btn">Le mie prenotazioni</button>
+            </div>
+
+            <p th:if="${messaggio != null}" th:text="${messaggio}"
+               th:style="${messaggio == 'Candidatura inviata con successo!' ? 'color:green; font-weight: bold; text-align: center;' : 'color:red; font-weight: bold; text-align: center;'}"></p>
+
+            <!-- Logout Button -->
+            <a th:href="@{/areariservata/logout}" class="Btn" style="position: absolute; top: 20px; right: 20px;">
+                <div class="sign">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                    </svg>
+                </div>
+                <div class="text">Logout</div>
+            </a>
+        </div>
+
+        <!-- Sezione guida -->
+        <div id="guide-section" class="guide-section">
+            <h3>Iscrizione al Ruolo di Guida</h3>
+            <p>Compila il modulo per iscriverti come guida.</p>
+            <form action="/areariservata/candidati" method="post" enctype="multipart/form-data" th:object="${candidato}">
+                <div class="mb-3">
+                    <label for="shortDescription" class="form-label">Breve descrizione di sé</label>
+                    <textarea class="form-control" id="shortDescription" name="descrizione" rows="3"
+                              placeholder="Scrivi una breve descrizione di te" required th:field="*{descrizione}"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Recapito Telefonico</label>
+                    <input type="tel" class="form-control" id="phoneNumber" name="telefono"
+                           placeholder="Inserisci il tuo numero di telefono" required th:field="*{telefono}">
+                </div>
+                <div class="mb-3">
+                    <label for="personalPhoto" class="form-label">Fotografia Personale (massimo 1 MB)</label>
+                    <input type="file" class="form-control" id="personalPhoto" name="foto" accept="image/*" required th:field="*{foto}">
+                </div>
+                <button type="submit" class="btn btn-primary">Invia Richiesta</button>
+            </form>
+        </div>
+
+        <!-- Sezione prenotazioni -->
+        <div id="bookings-section" class="bookings-section">
+            <h3>Le Mie Prenotazioni</h3>
+            <div class="bookings-container">
+                <div class="booking-card" th:each="prenotazione : ${prenotazioni}">
+                    <h5 th:text="${prenotazione.itinerario.nome}">Nome Itinerario</h5>
+                    <div class="booking-info">
+                        <div class="booking-detail">
+                            <p><strong>Nominativo:</strong> <span th:text="${prenotazione.nomeCompleto}">Luca Rizzolo</span></p>
+                            <p><strong>Email:</strong> <span th:text="${prenotazione.email}"></span></p>
+                            <p><strong>Telefono:</strong> <span th:text="${prenotazione.telefono}"></span></p>
+                        </div>
+                        <div class="booking-detail">
+                            <p><strong>Data dell'escursione:</strong> <span th:text="${#temporals.format(prenotazione.dataEscursione, 'dd/MM/yyyy')}">01/01/2024</span></p>
+                            <p><strong>Ora di partenza:</strong> <span th:text="${prenotazione.oraEscursione}">10:00</span></p>
+                            <p><strong>Numero Partecipanti:</strong> <span th:text="${prenotazione.numeroPartecipanti}">2</span></p>
+                        </div>
+                        <div class="booking-detail">
+                            <p><strong>Guida assegnata:</strong> <span th:text="${prenotazione.itinerario.guida.nome} + ' ' + ${prenotazione.itinerario.guida.cognome}">Mario Rossi</span></p>
+                            <p><strong>Data di prenotazione:</strong> <span th:text="${#temporals.format(prenotazione.dataPrenotazione, 'dd/MM/yyyy HH:mm')}"></span></p>
+                            <p><strong>Prezzo Totale:</strong> <span th:text="${#numbers.formatDecimal(prenotazione.prezzoTotale, 0, 'POINT', 2, 'COMMA') + '€'}">50€</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Se non ci sono prenotazioni -->
+                <div th:if="${#lists.isEmpty(prenotazioni)}" class="alert alert-info">
+                    Non hai ancora effettuato nessuna prenotazione.
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 <!-- Footer -->
 <footer class="mt-4">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row gy-4">
             <div class="col-12 col-md-6">
                 <h5 class="mb-2">Contatti</h5>
