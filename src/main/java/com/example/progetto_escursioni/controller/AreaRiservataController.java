@@ -53,6 +53,8 @@ public class AreaRiservataController {
             // se c'è una candidatura associata all'utente registro nel model una stringa per far comparire lo script per disabilitare il tasto di candidatura
             if(!candidatoService.controlloCandidato(utente.getId())) {
                 model.addAttribute("candidaturaBloccata", true);
+            } else {
+                model.addAttribute("candidaturaBloccata", false);
             }
 
             // recupero utente in sessione se presente e registro sul model questa cosa per poter cambiare scritta di tasto area riservata
