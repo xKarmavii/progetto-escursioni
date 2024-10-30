@@ -7,6 +7,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link th:href="@{CSS/style.css}" rel="stylesheet">
+    <style>
+        h3{
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <div class="page-wrapper">
@@ -39,92 +44,95 @@
                     </ul>
 
                     <div class="text-center text-sm-end mt-3 mt-sm-0">
-                        <a th:href="@{/toareariservata}" class="btn btn-outline">Area Riservata</a>
+                        <a th:href="@{/toareariservata}" class="btn btn-outline" th:text="${utenteLogged ? 'Il tuo profilo' : 'Accedi'}">Area Riservata</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
 
-<!-- Corpo della pagina con margine sopra -->
-<div class="container-fluid mt-4">
-    <div class="row">
-        <!-- Div laterale a sinistra -->
-        <div class="col-md-3">
-            <div class="border ms-3 p-3">
-                <h4>Applica i filtri per ricerca</h4>
-                <form method="post" action="/itinerari">
-                    <div class="mb-3">
-                        <label for="regione" class="form-label">Regione</label>
-                        <select class="form-select" id="regione" name="regione">
-                            <option value="tutte-regioni" selected>Tutte le regioni</option>
-                            <option value="" disabled>------------------------------</option>
-                            <option value="abruzzo">Abruzzo</option>
-                            <option value="basilicata">Basilicata</option>
-                            <option value="calabria">Calabria</option>
-                            <option value="campania">Campania</option>
-                            <option value="emilia-romagna">Emilia-Romagna</option>
-                            <option value="friuli-venezia-giulia">Friuli Venezia Giulia</option>
-                            <option value="lazio">Lazio</option>
-                            <option value="liguria">Liguria</option>
-                            <option value="lombardia">Lombardia</option>
-                            <option value="marche">Marche</option>
-                            <option value="molise">Molise</option>
-                            <option value="piemonte">Piemonte</option>
-                            <option value="puglia">Puglia</option>
-                            <option value="sardegna">Sardegna</option>
-                            <option value="sicilia">Sicilia</option>
-                            <option value="toscana">Toscana</option>
-                            <option value="trentino-alto-adige">Trentino-Alto Adige</option>
-                            <option value="umbria">Umbria</option>
-                            <option value="valle-d-aosta">Valle d'Aosta</option>
-                            <option value="veneto">Veneto</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <fieldset>
-                            <legend style="font-size:medium;">Difficoltà</legend>
-                            <label for="facile" class="form-label">Facile</label>
-                            <input type="checkbox" value="facile" id="facile" name="difficolta" checked></input>
-                            <label for="media" class="form-label">Media</label>
-                            <input type="checkbox" value="media" id="media" name="difficolta" checked></input>
-                            <label for="difficile" class="form-label">Difficile</label>
-                            <input type="checkbox" value="difficile" id="difficile" name="difficolta" checked></input>
-                        </fieldset>
-                    </div>
-                    <div class="mb-3">
-                        <label for="ordinaPer" class="form-label">Ordina per:</label>
-                        <select class="form-select" id="ordinaPer" name="ordinaPer">
-                            <option value="prezzo" selected>Prezzo</option>
-                            <option value="durata_media">Durata media</option>
-                            <option value="distanza">Distanza</option>
-                            <option value="dislivello">Dislivello</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Applica Filtri</button>
-                </form>
+    <!-- Corpo della pagina con margine sopra -->
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Div laterale a sinistra -->
+            <div class="col-md-3">
+                <div class="border ms-3 p-3">
+                    <h4>Applica i filtri per ricerca</h4>
+                    <form method="post" action="/itinerari">
+                        <div class="mb-3">
+                            <label for="regione" class="form-label">Regione</label>
+                            <select class="form-select" id="regione" name="regione">
+                                <option value="tutte-regioni" selected>Tutte le regioni</option>
+                                <option value="" disabled>------------------------------</option>
+                                <option value="abruzzo">Abruzzo</option>
+                                <option value="basilicata">Basilicata</option>
+                                <option value="calabria">Calabria</option>
+                                <option value="campania">Campania</option>
+                                <option value="emilia-romagna">Emilia-Romagna</option>
+                                <option value="friuli-venezia-giulia">Friuli Venezia Giulia</option>
+                                <option value="lazio">Lazio</option>
+                                <option value="liguria">Liguria</option>
+                                <option value="lombardia">Lombardia</option>
+                                <option value="marche">Marche</option>
+                                <option value="molise">Molise</option>
+                                <option value="piemonte">Piemonte</option>
+                                <option value="puglia">Puglia</option>
+                                <option value="sardegna">Sardegna</option>
+                                <option value="sicilia">Sicilia</option>
+                                <option value="toscana">Toscana</option>
+                                <option value="trentino-alto-adige">Trentino-Alto Adige</option>
+                                <option value="umbria">Umbria</option>
+                                <option value="valle-d-aosta">Valle d'Aosta</option>
+                                <option value="veneto">Veneto</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <fieldset>
+                                <legend style="font-size:medium;">Difficoltà</legend>
+                                <label for="facile" class="form-label">Facile</label>
+                                <input type="checkbox" value="facile" id="facile" name="difficolta" checked></input>
+                                <label for="media" class="form-label">Media</label>
+                                <input type="checkbox" value="media" id="media" name="difficolta" checked></input>
+                                <label for="difficile" class="form-label">Difficile</label>
+                                <input type="checkbox" value="difficile" id="difficile" name="difficolta"
+                                       checked></input>
+                            </fieldset>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ordinaPer" class="form-label">Ordina per:</label>
+                            <select class="form-select" id="ordinaPer" name="ordinaPer">
+                                <option value="prezzo" selected>Prezzo</option>
+                                <option value="durata_media">Durata media</option>
+                                <option value="distanza">Distanza</option>
+                                <option value="dislivello">Dislivello</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Applica Filtri</button>
+                    </form>
+                </div>
+                <br/>
+                <div class="border ms-3 p-3">
+                    <form method="post" action="/itinerari/ricerca">
+                        <div class="mb-3">
+                            <label for="ricercaItinerario" class="form-label">Ricerca un itinerario</label>
+                            <input type="search" class="form-control" placeholder="Cerca itinerario..."
+                                   id="ricercaItinerario" name="ricercaItinerario" list="listaNomiItinerari">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cerca</button>
+                    </form>
+                </div>
+                <datalist id="listaNomiItinerari">
+                    <option th:each="itinerario : ${listaTuttiItinerari}" th:value="${itinerario.nome}"></option>
+                </datalist>
             </div>
-            <br/>
-            <div class="border ms-3 p-3">
-                <form method="post" action="/itinerari/ricerca">
-                    <div class="mb-3">
-                        <label for="ricercaItinerario" class="form-label">Ricerca un itinerario</label>
-                        <input type="search" class="form-control" placeholder="Cerca itinerario..." id="ricercaItinerario" name="ricercaItinerario" list="listaNomiItinerari">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Cerca</button>
-                </form>
-            </div>
-            <datalist id="listaNomiItinerari">
-                <option th:each="itinerario : ${listaTuttiItinerari}" th:value="${itinerario.nome}"></option>
-            </datalist>
-        </div>
 
-        <!-- Contenuto principale -->
-        <div class="col-md-9">
-            <div class="border p-3">
-                <h4 style="text-align: center">Tutti gli itinerari</h4>
-                <div th:if="${#lists.isEmpty(itinerariVisualizzati)}">
-                    <p>Non ci sono itinerari da visualizzare per i filtri selezionati.</p>
+            <!-- Contenuto principale -->
+            <div class="col-md-9">
+                <div class="border p-3">
+                    <h3 style="text-align: center">I Nostri Itinerari</h3>
+                    <div th:if="${#lists.isEmpty(itinerariVisualizzati)}">
+                        <p style="text-align: center">Non ci sono itinerari da visualizzare per i filtri
+                            selezionati.</p>
                     </div>
                     <!-- Card 1 con margine inferiore -->
                     <div class="card mb-4" th:each="itinerario : ${itinerariVisualizzati}">
@@ -137,27 +145,39 @@
                             <!-- Parte destra con descrizione -->
                             <div class="col-md-6">
                                 <div class="card-body">
-                                    <h5 class="card-title" th:text="${itinerario.nome}">Titolo della Card</h5>
-                                    <p class="card-text" th:text="${#strings.length(itinerario.descrizione) > 500 ? #strings.substring(itinerario.descrizione,0,500) + '...' : itinerario.descrizione}">
+                                    <h5 class="card-title" style="font-weight: bold" th:text="${itinerario.nome}">Titolo della Card</h5>
+                                    <p class="card-text"
+                                       th:text="${#strings.length(itinerario.descrizione) > 500 ? #strings.substring(itinerario.descrizione,0,500) + '...' : itinerario.descrizione}">
                                         Descrizione breve...
                                     </p>
-                                    <div class="d-flex align-items-center">
-                                        <span class="ml-2" th:text="'Difficoltà: ' + ${#strings.capitalize(itinerario.difficolta)}">Difficoltà: 5/5</span>
+
+                                    <!-- Difficoltà -->
+                                    <div class="d-flex align-items-center mb-2">
+                                        <strong>Difficoltà:</strong>
+                                        <span class="ms-2" th:text="${#strings.capitalize(itinerario.difficolta)}"></span>
                                     </div>
+
+                                    <!-- Regione -->
+                                    <div class="d-flex align-items-center mb-2">
+                                        <strong>Regione:</strong>
+                                        <span class="ms-2" th:text="${itinerario.regione}"></span>
+                                    </div>
+
+                                    <!-- Prezzo -->
+                                    <div class="d-flex align-items-center mb-2">
+                                        <strong>Prezzo:</strong>
+                                        <span class="ms-2" th:text="${#numbers.formatDecimal(itinerario.prezzo, 0, 'POINT', 2, 'COMMA') + '€'}"></span>
+                                    </div>
+
                                     <!-- Pulsante per dettagli -->
-                                    <a th:href="@{/dettaglio(id=${itinerario.id})}" class="btn btn-primary mt-4">Scopri
-                                        di più</a>
+                                    <a th:href="@{/dettaglio(id=${itinerario.id})}" class="btn btn-primary mt-4">Scopri di più</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Footer -->
+
+                    <!-- Footer -->
 <footer class="mt-4">
     <div class="container-fluid">
         <div class="row gy-4">
