@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -38,6 +39,13 @@ public class DettaglioController {
         // recupero la lista delle date disponibili associate all'itinerario e le registro nel model
         List<DataDisponibile> dateDisponibili = itinerario.getDateDisponibiliItinerario();
         model.addAttribute("dateDisponibili", dateDisponibili);
+
+        model.addAttribute("prenotazioneBloccata", dateDisponibili.isEmpty());
+        for(DataDisponibile data : dateDisponibili) {
+            if (data.getData().isBefore(LocalDate.now()) || data.getData().equals(LocalDate.now())) {
+                model.addAttribute("prenotazioneBloccata", true);
+            }
+        }
 
         // registro in sessione la pagina corrente, per eventuali tasti "indietro" o per quando fai il login
         session.setAttribute("paginaPrecedente", "dettaglio?id=" + itinerario.getId());

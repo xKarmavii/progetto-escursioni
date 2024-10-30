@@ -137,7 +137,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <a class="btn btn-primary" th:href="@{/checkout(id=${itinerario.id})}" id="tastoPrenotaItinerario">Prenota Itinerario</a>
+            <a class="btn btn-primary" th:href="@{/checkout(id=${itinerario.id})}" id="tastoPrenotaItinerario" th:text="${prenotazioneBloccata ? 'Non disponibile' : 'Prenota Itinerario'}">Prenota Itinerario</a>
         </div>
         <hr>
         <div class="image-container mt-4">
@@ -217,7 +217,7 @@
     starRatingElement.textContent = stars;
 </script>
 <script th:if="${prenotazioneBloccata}">
-    document.getElementById("tastoPrenotaItinerario").disabled = true;
+    document.getElementById("tastoPrenotaItinerario").classList.add("disabled");
 </script>
 </body>
 </html>
