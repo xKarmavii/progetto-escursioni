@@ -44,6 +44,8 @@ public class DettaglioController {
         for(DataDisponibile data : dateDisponibili) {
             if (data.getData().isBefore(LocalDate.now()) || data.getData().equals(LocalDate.now())) {
                 model.addAttribute("prenotazioneBloccata", true);
+            } else {
+                model.addAttribute("prenotazioneBloccata", false);
             }
         }
 

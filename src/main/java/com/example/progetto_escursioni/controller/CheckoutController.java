@@ -14,6 +14,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -48,7 +49,13 @@ public class CheckoutController {
 
             // recupera la lista di date disponibili avendo a disposizione l'itinerario recuperato sopra e registra nel model per futura iterazione
             List<DataDisponibile> dateDisponibili = itinerario.getDateDisponibiliItinerario();
-            model.addAttribute("dateDisponibili", dateDisponibili);
+            List<DataDisponibile> dateDisponibiliValide = new ArrayList<>();
+            for(DataDisponibile data : dateDisponibili) {
+                if (!(data.getData().isBefore(LocalDate.now()) || data.getData().equals(LocalDate.now()))) {
+                    dateDisponibiliValide.add(data);
+                }
+            }
+            model.addAttribute("dateDisponibili", dateDisponibiliValide);
 
             return "checkout";
         }
