@@ -6,10 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +14,7 @@ import java.util.List;
 @RequestMapping("/itinerari")
 public class ItinerariController {
 
+    List<Itinerario> listaTuttiItinerari;
     List<Itinerario> itinerariVisualizzati;
 
     @Autowired
@@ -26,8 +24,16 @@ public class ItinerariController {
     public String getPage(
             HttpSession session,
             Model model){
-        // di base accedendo alla pagina si recupera la lista di tutti gli itinerari
-        itinerariVisualizzati = itinerarioService.elencoItinerari();
+
+        listaTuttiItinerari = itinerarioService.elencoItinerari();
+        model.addAttribute("listaTuttiItinerari", listaTuttiItinerari);
+
+        if(session.getAttribute("itinerariVisualizzatiDaRicerca") != null) {
+            itinerariVisualizzati = (List<Itinerario>) session.getAttribute("itinerariVisualizzatiDaRicerca");
+            session.removeAttribute("itinerariVisualizzatiDaRicerca");
+        } else {
+            itinerariVisualizzati = itinerarioService.elencoItinerari();
+        }
         model.addAttribute("itinerariVisualizzati", itinerariVisualizzati);
 
         // registro in sessione la pagina corrente, per eventuali tasti "indietro" o per quando fai il login
@@ -54,6 +60,9 @@ public class ItinerariController {
         // registro nel model per thymeleaf
         model.addAttribute("itinerariVisualizzati", itinerariVisualizzati);
 
+        listaTuttiItinerari = itinerarioService.elencoItinerari();
+        model.addAttribute("listaTuttiItinerari", listaTuttiItinerari);
+
         return "itinerari";
     }
 
@@ -63,4 +72,19 @@ public class ItinerariController {
         return "redirect:/areariservata";
     }
 
+    @PostMapping("/ricerca")
+    public String ricercaRisultati(
+            Model model,
+            HttpSession session,
+            @RequestParam("ricercaItinerario") String ricercaItinerario
+    ){
+        itinerariVisualizzati = itinerarioService.cercaItinerarioPerNomeLike(ricercaItinerario);
+        model.addAttribute("itinerariVisualizzati", itinerariVisualizzati);
+        session.setAttribute("itinerariVisualizzatiDaRicerca", itinerariVisualizzati);
+
+        listaTuttiItinerari = itinerarioService.elencoItinerari();
+        model.addAttribute("listaTuttiItinerari", listaTuttiItinerari);
+
+        return "redirect:/itinerari";
+    }
 }

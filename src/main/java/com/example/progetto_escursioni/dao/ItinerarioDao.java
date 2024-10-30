@@ -26,4 +26,7 @@ public interface ItinerarioDao extends CrudRepository<Itinerario, Integer> {
     )
     List<Itinerario> selectItinerariWhereDifficoltaOrderBy(@Param("d1") String difficoltaUno, @Param("d2") String difficoltaDue, @Param("d3") String difficoltaTre, Sort sort);
 
+    // filtro per ricerca per nome itinerario
+    List<Itinerario> findByNomeContaining(String ricercaItinerario);
+
 }

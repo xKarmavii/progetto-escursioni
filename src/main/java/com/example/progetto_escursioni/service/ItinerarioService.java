@@ -13,4 +13,7 @@ public interface ItinerarioService {
     // metodi per filtri
     List<Itinerario> filtraPerRegioneDifficoltaOrdinaPer(String regioneSelezionata, String difficolta, String ordinaPerSelezionato);
     List<Itinerario> filtraPerDifficoltaOrdinaPer(String difficolta, String ordinaPerSelezionato);
+
+    // metodo per ricerca per nome
+    List<Itinerario> cercaItinerarioPerNomeLike(String ricercaItinerario);
 }

@@ -99,5 +99,10 @@ public class ItinerarioServiceImpl implements ItinerarioService {
         return itinerarioDao.selectItinerariWhereDifficoltaOrderBy(difficoltaUno, difficoltaDue, difficoltaTre, sort);
     }
 
+    @Override
+    public List<Itinerario> cercaItinerarioPerNomeLike(String ricercaItinerario) {
+        return itinerarioDao.findByNomeContaining(ricercaItinerario);
+    }
+
 
 }
