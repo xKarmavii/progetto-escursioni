@@ -156,9 +156,8 @@
         }
     });
 
-    // refresh della validity dell'input password
+    // refresh della validity dell'input password ogni volta che l'utente ci scrive
     document.getElementById("register-password").addEventListener("input", function(event) {
-        // Clear the custom validity each time the user types
         this.setCustomValidity("");
     });
 
@@ -193,21 +192,6 @@
         } else {
             passwordInput.setCustomValidity(errorMessage);
             return false;
-        }
-    }
-
-    // controllo validity data di nascita
-
-    function validateBirthday(birthdayInput) {
-        // Data attuale
-        const today = new Date();
-        const currentYear = today.getFullYear();
-        const currentMonth = today.getMonth() + 1; // I mesi sono indicizzati da 0
-
-        // Controllo se l'anno è valido
-        if (year < currentYear || (year === currentYear && month < currentMonth)) {
-          errorMessage += "Data di nascita non valida";
-          return;
         }
     }
 </script>
