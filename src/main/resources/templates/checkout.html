@@ -44,17 +44,17 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Nome e cognome</label>
                 <input type="text" class="form-control" id="name" name="nomeCompleto" required
-                       th:placeholder="${utente.nome} + ' ' + ${utente.cognome}">
+                       th:placeholder="${utente.nome} + ' ' + ${utente.cognome}" maxlength="60">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required
-                       th:placeholder="${utente.email}">
+                       th:placeholder="${utente.email}" maxlength="50">
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Numero di Telefono</label>
                 <input type="tel" class="form-control" id="phone" name="telefono"
-                       placeholder="Inserisci il tuo numero di telefono" required>
+                       placeholder="Inserisci il tuo numero di telefono" required maxlength="15">
             </div>
             <div class="mb-3">
                 <label for="numeroPartecipanti" class="form-label">Numero di Partecipanti (Max 4): </label>

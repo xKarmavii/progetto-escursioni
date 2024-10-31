@@ -46,4 +46,10 @@ public class IndexController {
         return "redirect:/areariservata";
     }
 
+    // per gestire alcuni potenziali errori di richiesta
+    @GetMapping("/null")
+    public String nullRedirectToHome(){
+        return "redirect:/";
+    }
+
 }

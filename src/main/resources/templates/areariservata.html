@@ -193,12 +193,12 @@
                 <div class="mb-3">
                     <label for="shortDescription" class="form-label">Breve descrizione di sé</label>
                     <textarea class="form-control" id="shortDescription" name="descrizione" rows="3"
-                              placeholder="Scrivi una breve descrizione di te" required th:field="*{descrizione}"></textarea>
+                              placeholder="Scrivi una breve descrizione di te" required th:field="*{descrizione}" maxlength="65535"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="phoneNumber" class="form-label">Recapito Telefonico</label>
                     <input type="tel" class="form-control" id="phoneNumber" name="telefono"
-                           placeholder="Inserisci il tuo numero di telefono" required th:field="*{telefono}">
+                           placeholder="Inserisci il tuo numero di telefono" required th:field="*{telefono}" maxlength="15">
                 </div>
                 <div class="mb-3">
                     <label for="personalPhoto" class="form-label">Fotografia Personale (massimo 1 MB)</label>

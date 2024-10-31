@@ -76,34 +76,30 @@
             </a>
             <h2 class="text-center">Registrati</h2>
         </div>
-        <form method="post" action="/loginregistrazione/registrazione" th:object="${utente}">
+        <form method="post" action="/loginregistrazione/registrazione" th:object="${utente}" id="formRegistrazione">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome: </label>
-                <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Inserisci Nome" required>
+                <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Inserisci Nome" maxlength="50" required>
             </div>
             <div class="mb-3">
                 <label for="cognome" class="form-label">Cognome: </label>
-                <input type="text" class="form-control" id="cognome" th:field="*{cognome}" placeholder="Inserisci Cognome" required>
+                <input type="text" class="form-control" id="cognome" th:field="*{cognome}" placeholder="Inserisci Cognome" maxlength="50" required>
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Nome Utente: </label>
-                <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Inserisci Nome Utente"
-                       required>
+                <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Inserisci Nome Utente" maxlength="50" required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email: </label>
-                <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Inserisci Email"
-                       required>
+                <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Inserisci Email" maxlength="50" required>
             </div>
             <div class="mb-3">
                 <label for="nascita" class="form-label">Data di Nascita: </label>
-                <input type="date" class="form-control" id="nascita" th:field="*{dataNascita}" placeholder="Inserisci Data di Nascita"
-                       required>
+                <input type="date" class="form-control" id="nascita" th:field="*{dataNascita}" placeholder="Inserisci Data di Nascita" min="1900-01-01" required>
             </div>
             <div class="mb-3">
                 <label for="register-password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="register-password" th:field="*{password}" placeholder="Crea una password"
-                       required>
+                <input type="password" class="form-control" id="register-password" th:field="*{password}" placeholder="Crea una password" minlength="8" maxlength="50" required>
             </div>
             <p th:if="${messaggioDue != null}" th:text="${messaggioDue}" style="color:red; font-weight: bold; text-align: center;"></p>
             <button type="submit" class="btn btn-success w-100">Registrati</button>
@@ -129,6 +125,90 @@
     function showLoginForm() {
         document.getElementById('register-form').classList.add('d-none');
         document.getElementById('login-form').classList.remove('d-none');
+    }
+
+
+    // FUNZIONI DI CONTROLLO DEL FORM DI REGISTRAZIONE
+
+    // data attuale
+    const oggi = new Date();
+
+    // data massima selezionabile per data di nascita (data attuale - 18 anni)
+    const maxDate = new Date(
+        oggi.getFullYear() - 18,
+        oggi.getMonth(),
+        oggi.getDate()
+    );
+
+    // formatto la data e la setto come max dell'input
+    const dataFormattata = maxDate.toISOString().split('T')[0];
+    document.getElementById("nascita").max = dataFormattata;
+
+    // evento di controllo
+
+    document.getElementById("formRegistrazione").addEventListener("submit", function(event) {
+        console.log("Form submission triggered");
+        const passwordInput = document.getElementById("register-password");
+
+        if (!validatePassword(passwordInput)) {
+            passwordInput.reportValidity();
+            event.preventDefault();
+        }
+    });
+
+    // refresh della validity dell'input password
+    document.getElementById("register-password").addEventListener("input", function(event) {
+        // Clear the custom validity each time the user types
+        this.setCustomValidity("");
+    });
+
+    // controllo validity input password
+    function validatePassword(passwordInput) {
+        const password = passwordInput.value;
+        console.log("Password being tested:", password);
+
+        const uppercasePattern = /[A-Z]/;
+        const lowercasePattern = /[a-z]/;
+        const numberPattern = /[0-9]/;
+        const symbolPattern = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/;
+
+        let errorMessage = "";
+
+        if (!uppercasePattern.test(password)) {
+            errorMessage += "Deve contenere almeno una lettera maiuscola (A-Z).\n";
+        }
+        if (!lowercasePattern.test(password)) {
+            errorMessage += "Deve contenere almeno una lettera minuscola (a-z).\n";
+        }
+        if (!numberPattern.test(password)) {
+            errorMessage += "Deve contenere almeno un numero (0-9).\n";
+        }
+        if (!symbolPattern.test(password)) {
+            errorMessage += "Deve contenere almeno un simbolo consentito (! @ # $ % ^ & * ( ) _ + - = [ ] { } ; : ' \" \\ | , . < > / ?).\n";
+        }
+
+        if (errorMessage === "") {
+            passwordInput.setCustomValidity("");
+            return true;
+        } else {
+            passwordInput.setCustomValidity(errorMessage);
+            return false;
+        }
+    }
+
+    // controllo validity data di nascita
+
+    function validateBirthday(birthdayInput) {
+        // Data attuale
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        const currentMonth = today.getMonth() + 1; // I mesi sono indicizzati da 0
+
+        // Controllo se l'anno è valido
+        if (year < currentYear || (year === currentYear && month < currentMonth)) {
+          errorMessage += "Data di nascita non valida";
+          return;
+        }
     }
 </script>
 <script th:if="${messaggioDue != null}">
