@@ -35,6 +35,7 @@
             object-fit: cover; /* Taglia l'immagine per riempire il div */
             max-height: 200px; /* Imposta un'altezza massima per tutte le immagini */
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         h1{
@@ -48,7 +49,7 @@
     </style>
 </head>
 <body>
-<div class="page-wrapper">
+<div class="page-wrapper ">
     <!-- Navbar -->
     <header class="container-fluid">
         <nav class="navbar navbar-expand-lg">
@@ -88,7 +89,7 @@
 
 
     <!-- Corpo -->
-    <div class="container  mt-5">
+    <div class="container mt-5 mb-4">
         <h1 class="text-center mb-4 " th:text="${itinerario.nome}">Titolo dell'Itinerario</h1>
         <div class="row d-flex align-items-stretch"> <!-- Aggiunto d-flex e align-items-stretch -->
             <div class="col-md-6">
@@ -131,23 +132,24 @@
             </div>
         </div>
 
-        <div class="mt-4" style="text-align: justify;">
+        <div class="mx-5 mt-4" style="text-align: justify;">
+            <h5 class="text-center fw-bold">Descrizione</h5>
             <p th:text="${itinerario.descrizione}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci,
                 alias animi assumenda at consequatur cumque dolore incidunt itaque iusto magnam obcaecati porro
                 reiciendis rem repudiandae, similique sint sit sunt temporibus!</p>
         </div>
 
-        <div class="text-center mt-5">
-            <a class="btn btn-primary" th:href="@{/checkout(id=${itinerario.id})}" id="tastoPrenotaItinerario" th:text="${prenotazioneBloccata ? 'Non disponibile' : 'Prenota Itinerario'}">Prenota Itinerario</a>
+        <div class="text-center my-4">
+            <a class="btn" th:href="@{/checkout(id=${itinerario.id})}" id="tastoPrenotaItinerario" th:text="${prenotazioneBloccata ? 'Non disponibile' : 'Prenota Itinerario'}">Prenota Itinerario</a>
         </div>
         <hr>
-        <div class="image-container mt-4 ">
+        <div class="image-container my-3">
             <h4 >Galleria Immagini</h4>
             <div class="row">
                 <div class="col-md-4" th:each="foto : ${fotoItinerario}">
                     <!-- Controllo per se l'immagine esiste -->
                     <a th:if="${foto.foto != null}" th:href="${foto.foto}" data-fancybox="gallery">
-                        <img th:src="${foto.foto}" alt="Foto itinerario" style="height: 100%;">
+                        <img th:src="${foto.foto}" alt="Foto itinerario">
                     </a>
                     <!-- Controllo per immagine di default -->
                     <a th:if="${foto.foto == null}" th:href="@{/markerImage.png}" data-fancybox="gallery">

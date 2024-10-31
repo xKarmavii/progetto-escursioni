@@ -45,7 +45,7 @@ public class AreaRiservataController {
 
             // messaggi di successo o errore per candidatura
             if(successoCandidatura != null && successoCandidatura.equals("true")){
-                model.addAttribute("messaggio", "Candidatura inviata con successo!");
+                model.addAttribute("messaggio", "Candidatura inviata con successo: ti risponderemo al più presto!");
             } else if (successoCandidatura != null && successoCandidatura.equals("false")){
                 model.addAttribute("messaggio", "Non puoi inviare un'altra candidatura!");
             }

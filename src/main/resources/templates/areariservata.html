@@ -115,6 +115,8 @@
         .booking-detail {
             min-width: 200px;
         }
+
+
     </style>
 </head>
 <body>
@@ -167,12 +169,12 @@
             <p><strong>Username:</strong> <span th:text="${utente.username}"></span></p>
 
             <div class="button-container">
-                <button class="btn btn-primary" id="toggle-guide-btn" th:text="${candidaturaBloccata ? 'Candidatura già inviata' : 'Iscriviti come guida'}">Iscriviti come guida</button>
+                <button class="btn" id="toggle-guide-btn" th:text="${candidaturaBloccata ? 'Candidatura già inviata' : 'Iscriviti come guida'}">Iscriviti come guida</button>
                 <button class="btn btn-info" id="toggle-bookings-btn">Le mie prenotazioni</button>
             </div>
 
             <p th:if="${messaggio != null}" th:text="${messaggio}"
-               th:style="${messaggio == 'Candidatura inviata con successo!' ? 'color:green; font-weight: bold; text-align: center;' : 'color:red; font-weight: bold; text-align: center;'}"></p>
+               th:style="${messaggio == 'Candidatura inviata con successo: ti risponderemo al più presto!' ? 'color:#2C5530; font-weight: bold; text-align: center;' : 'color:red; font-weight: bold; text-align: center;'}"></p>
 
             <!-- Logout Button -->
             <a th:href="@{/areariservata/logout}" class="Btn" style="position: absolute; top: 20px; right: 20px;">

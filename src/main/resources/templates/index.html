@@ -83,18 +83,22 @@
     </div>
 </section>
 
-    <section id="chi-siamo" class="container-fluid py-5">
-        <div class="container">
-            <h5 class="text-center mb-1">Chi Siamo</h5>
-            <p class="text-center">Siamo un'azienda specializzata nella creazione di itinerari unici in tutta Italia,
-                pensati per farti scoprire il meglio del nostro paese. Dai percorsi enogastronomici alle avventure
-                outdoor, ogni viaggio è disegnato con passione per farti vivere esperienze autentiche e indimenticabili.
-                Affidati a noi per esplorare l'Italia come mai prima d'ora, con un tocco di qualità e cura in ogni
-                dettaglio.</p>
+    <section  class="container-fluid py-5">
+        <div id="chi-siamo" class="container py-1">
+            <h5 class="text-center fw-bold mb-1">Chi Siamo</h5>
+            <p class="text-center">Siamo un team di professionisti appassionati dell’Italia e delle sue bellezze, impegnati nella creazione di itinerari esclusivi per chi desidera vivere un’esperienza autentica e indimenticabile. Le nostre escursioni spaziano dai tour enogastronomici alle avventure outdoor, offrendo un modo unico di esplorare luoghi straordinari e scoprire tradizioni locali. Con cura e attenzione a ogni dettaglio, progettiamo viaggi che ti faranno sentire parte del territorio, regalandoti momenti autentici e speciali. Affidati a noi per prenotare la tua prossima avventura in Italia!</p>
+        </div>
+        <div style="text-align: center;">
+            <h6 class="link-index d-inline-block text-center fw-bold">
+                <a href="#" style="color: #313131;" th:href="@{/guide}">Scopri le nostre guide</a>
+            </h6>
         </div>
     </section>
 
-    <section class="container-fluid py-5 ">
+
+    <section class="card-index container-fluid mb-4">
+        <hr>
+        <h3 class="text-center fw-bold mb-3">I Nostri Itinerari</h3>
         <div class="row g-4 ">
             <div class="col-12 col-md-6 col-xl-4 mx-auto" th:each="itinerario : ${caroselloItinerari}">
                 <div class="card h-100">
@@ -114,10 +118,17 @@
                 </div>
             </div>
         </div>
+        <div style="text-align: end;">
+            <h5 class="link-index d-inline-block text-end mt-4">
+             <a href="#" style="color: #313131;" th:href="@{/itinerari}">
+                   Vai agli itinerari <i class="bi bi-arrow-right"></i>
+             </a>
+            </h5>
+        </div>
     </section>
 </div>
 
-<footer class="mt-4">
+<footer>
     <div class="container-fluid">
         <div class="row gy-4">
             <div class="col-12 col-md-6">
