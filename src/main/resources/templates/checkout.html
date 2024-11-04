@@ -44,12 +44,18 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Nome e cognome</label>
                 <input type="text" class="form-control" id="name" name="nomeCompleto" required
-                       th:placeholder="${utente.nome} + ' ' + ${utente.cognome}" maxlength="100">
+                       placeholder="Inserisci nome e cognome" maxlength="100" list="nomeCognomeUtente">
+                <datalist id="nomeCognomeUtente">
+                    <option th:value="${utente.nome} + ' ' + ${utente.cognome}"></option>
+                </datalist>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required
-                       th:placeholder="${utente.email}" maxlength="50">
+                       placeholder="Inserisci la tua email" maxlength="50" list="emailUtente">
+                <datalist id="emailUtente">
+                    <option th:value="${utente.email}"></option>
+                </datalist>
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Numero di Telefono</label>
