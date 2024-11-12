@@ -58,9 +58,4 @@ public class DettaglioController {
         return "dettaglio";
     }
 
-    // per gestire il tasto per l'area riservata
-    @GetMapping("/toareariservata")
-    public String toAreaRiservata(HttpSession session){
-        return "redirect:/areariservata";
-    }
 }

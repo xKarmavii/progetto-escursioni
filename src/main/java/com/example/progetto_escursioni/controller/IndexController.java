@@ -40,12 +40,6 @@ public class IndexController {
         return "index";
     }
 
-    // per gestire il tasto per l'area riservata
-    @GetMapping("/toareariservata")
-    public String toAreaRiservata(HttpSession session){
-        return "redirect:/areariservata";
-    }
-
     // per gestire alcuni potenziali errori di richiesta
     @GetMapping("/null")
     public String nullRedirectToHome(){

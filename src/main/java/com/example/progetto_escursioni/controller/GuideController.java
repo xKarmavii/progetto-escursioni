@@ -34,10 +34,4 @@ public class GuideController {
         return "guide";
     }
 
-    // per gestire il tasto per l'area riservata
-    @GetMapping("/toareariservata")
-    public String toAreaRiservata(HttpSession session){
-        return "redirect:/areariservata";
-    }
-
 }

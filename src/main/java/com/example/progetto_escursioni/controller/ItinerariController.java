@@ -25,9 +25,11 @@ public class ItinerariController {
             HttpSession session,
             Model model){
 
+        // recupero lista tutti itinerari per stampare opzioni di datalist per suggerimento di ricerca
         listaTuttiItinerari = itinerarioService.elencoItinerari();
         model.addAttribute("listaTuttiItinerari", listaTuttiItinerari);
 
+        // per visualizzare itinerari da filtri / ricerca
         if(session.getAttribute("itinerariVisualizzatiDaRicerca") != null) {
             itinerariVisualizzati = (List<Itinerario>) session.getAttribute("itinerariVisualizzatiDaRicerca");
             session.removeAttribute("itinerariVisualizzatiDaRicerca");
@@ -61,22 +63,10 @@ public class ItinerariController {
             itinerariVisualizzati = (fromHome == null) ? itinerarioService.filtraPerRegioneDifficoltaOrdinaPer(regione, difficolta, ordinaPer) : itinerarioService.elencoItinerariRegione(regione);
         }
 
-        // registro nel model per thymeleaf
-        model.addAttribute("itinerariVisualizzati", itinerariVisualizzati);
+        // aggiungo a session per recuperarlo nel GetMapping principale
+        session.setAttribute("itinerariVisualizzatiDaRicerca", itinerariVisualizzati);
 
-        listaTuttiItinerari = itinerarioService.elencoItinerari();
-        model.addAttribute("listaTuttiItinerari", listaTuttiItinerari);
-
-        // recupero utente in sessione se presente e registro sul model questa cosa per poter cambiare scritta di tasto area riservata
-        model.addAttribute("utenteLogged", session.getAttribute("utente") != null); // (session.getAttribute("utente") != null ? true : false)
-
-        return "itinerari";
-    }
-
-    // per gestire il tasto per l'area riservata
-    @GetMapping("/toareariservata")
-    public String toAreaRiservata(HttpSession session){
-        return "redirect:/areariservata";
+        return "redirect:/itinerari";
     }
 
     @PostMapping("/ricerca")
@@ -85,12 +75,9 @@ public class ItinerariController {
             HttpSession session,
             @RequestParam("ricercaItinerario") String ricercaItinerario
     ){
+        // recupero lista di itinerari in base alla ricerca e la registro in session per recuperarlo nel GetMapping principale
         itinerariVisualizzati = itinerarioService.cercaItinerarioPerNomeLike(ricercaItinerario);
-        model.addAttribute("itinerariVisualizzati", itinerariVisualizzati);
         session.setAttribute("itinerariVisualizzatiDaRicerca", itinerariVisualizzati);
-
-        listaTuttiItinerari = itinerarioService.elencoItinerari();
-        model.addAttribute("listaTuttiItinerari", listaTuttiItinerari);
 
         return "redirect:/itinerari";
     }

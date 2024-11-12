@@ -62,7 +62,7 @@
                 <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Inserisci la password"
                        required>
             </div>
-            <p th:if="${messaggio != null}" th:text="${messaggio}" th:style="${messaggio == 'Registrazione effettuata' ? 'color:white; font-weight: bold; text-align: center;' : 'color:white; font-weight: bold; text-align: center;'}"></p>
+            <p th:if="${messaggio != null}" th:text="${messaggio}" th:style="${messaggio == 'Registrazione effettuata' ? 'color:white; font-weight: bold; text-align: center; text-shadow: 0px 0px 5px black;' : 'color:orangered; font-weight: bold; text-align: center; text-shadow: 0px 0px 5px black;'}"></p>
             <button type="submit" class="btn btn-primary w-100">Accedi</button>
         </form>
         <p class="text-center mt-3">Non hai un account? <a href="#" onclick="showRegisterForm()">Registrati</a></p>
@@ -101,7 +101,7 @@
                 <label for="register-password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="register-password" th:field="*{password}" placeholder="Crea una password" minlength="8" maxlength="50" required>
             </div>
-            <p th:if="${messaggioDue != null}" th:text="${messaggioDue}" style="color:red; font-weight: bold; text-align: center;"></p>
+            <p th:if="${messaggioDue != null}" th:text="${messaggioDue}" style="color:orangered; font-weight: bold; text-align: center; text-shadow: 0px 0px 5px black;"></p>
             <button type="submit" class="btn btn-success w-100">Registrati</button>
         </form>
         <p class="text-center mt-3">Hai già un account? <a href="#" onclick="showLoginForm()">Accedi</a></p>

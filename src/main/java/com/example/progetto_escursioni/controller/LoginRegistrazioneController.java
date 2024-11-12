@@ -55,7 +55,7 @@ public class LoginRegistrazioneController {
 
 
         if (utenteService.loginUtente(session, username, password)) {
-            // se il login ha successo (ovvero se c'è un utente corrispondente sul database) allora reindirizza all'area riservata
+            // se il login ha successo (ovvero se c'è un utente corrispondente sul database) allora reindirizza alla pagina precedente
             return "redirect:/" + session.getAttribute("paginaPrecedente");
         }
 
@@ -66,7 +66,7 @@ public class LoginRegistrazioneController {
     public String registrazioneManager(Model model,
                                        @ModelAttribute("utente") Utente utente) {
 
-        // controllo per vedere se username o password sono già in uso
+        // controllo per vedere se username o email sono già in uso
         if (utenteService.controlloUsernameEmail(utente.getUsername(), utente.getEmail())) {
             utenteService.salvaUtente(utente); // se è tutto ok salva l'utente sul database
             return "redirect:/loginregistrazione?successoRegistrazione=true";
